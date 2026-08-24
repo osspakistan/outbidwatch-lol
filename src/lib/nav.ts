@@ -11,45 +11,45 @@ export function renderHeader(options: NavOptions = {}): string {
 
   return `
   <!-- Header -->
-  <header class="pt-6 pb-4 flex items-center justify-between sticky top-0 bg-[var(--paper)]/95 backdrop-blur z-30 border-b border-transparent">
-    <a href="/" id="headerLogoLink" class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--mosambi);">
-        <i class="ph-fill ph-gavel text-[16px]" style="color:#1E2417;"></i>
+  <header class="pt-5 pb-3.5 flex items-center justify-between sticky top-0 bg-[var(--paper)]/95 backdrop-blur z-30 border-b border-transparent">
+    <a href="/" id="headerLogoLink" class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--mosambi);">
+        <i class="ph-fill ph-gavel text-[15px]" style="color:#1E2417;"></i>
       </div>
-      <span class="display font-extrabold text-[18px] tracking-tight text-[var(--ink)]">outbidwatch</span>
+      <span class="display font-extrabold text-[17px] tracking-tight text-[var(--ink)]">outbidwatch</span>
     </a>
 
     <!-- Desktop Navigation (>= 640px) -->
-    <div class="hidden sm:flex items-center gap-2">
+    <div class="hidden sm:flex items-center gap-1.5">
       ${isBoard ? `
-        <a href="/" class="pill px-3.5 py-1.5 text-[13px] font-bold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors flex items-center gap-1">
-          <i class="ph-bold ph-arrow-left text-[11px]"></i> Directory
+        <a href="/" class="pill px-2.5 py-1 text-[12px] font-bold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors flex items-center gap-1">
+          <i class="ph-bold ph-arrow-left text-[10px]"></i> Directory
         </a>
       ` : `
-        <a href="/" id="headerDirLink" class="pill px-3.5 py-1.5 text-[13px] ${active === "directory" ? "font-bold bg-[var(--ink)] text-white shadow-sm" : "font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]"} transition-colors">
+        <a href="/" id="headerDirLink" class="pill px-2.5 py-1 text-[12px] ${active === "directory" ? "font-bold bg-[var(--ink)] text-white shadow-sm" : "font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]"} transition-colors">
           Directory
         </a>
       `}
-      <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] ${active === "timeline" ? "font-bold bg-[var(--ink)] text-white shadow-sm" : "font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]"} transition-colors">
+      <a href="/timeline" class="pill px-2.5 py-1 text-[12px] ${active === "timeline" ? "font-bold bg-[var(--ink)] text-white shadow-sm" : "font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]"} transition-colors">
         Timeline
       </a>
-      <a href="/map" class="pill px-3.5 py-1.5 text-[13px] ${active === "map" ? "font-bold bg-[var(--ink)] text-white shadow-sm" : "font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]"} transition-colors">
+      <a href="/map" class="pill px-2.5 py-1 text-[12px] ${active === "map" ? "font-bold bg-[var(--ink)] text-white shadow-sm" : "font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]"} transition-colors">
         Map
       </a>
-      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="View Source on GitHub" class="pill px-3 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] hover:text-[var(--ink)] transition-colors flex items-center gap-1.5">
-        <i class="ph-bold ph-github-logo text-[15px]"></i>
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="View Source on GitHub" class="pill px-2.5 py-1 text-[12px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] hover:text-[var(--ink)] transition-colors flex items-center gap-1">
+        <i class="ph-bold ph-github-logo text-[13.5px]"></i>
         <span>GitHub</span>
       </a>
     </div>
 
     <!-- Mobile Header Triggers (< 640px) -->
-    <div class="flex sm:hidden items-center gap-2">
-      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="GitHub Repository" class="w-9 h-9 rounded-xl border border-[#E4E1D4] bg-white flex items-center justify-center text-[var(--ink)] hover:bg-[#F5F4EC] transition-colors shadow-2xs">
-        <i class="ph-bold ph-github-logo text-[18px]"></i>
+    <div class="flex sm:hidden items-center gap-1.5">
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="GitHub Repository" class="w-8 h-8 rounded-xl border border-[#E4E1D4] bg-white flex items-center justify-center text-[var(--ink)] hover:bg-[#F5F4EC] transition-colors shadow-2xs">
+        <i class="ph-bold ph-github-logo text-[16px]"></i>
         <span class="sr-only">GitHub</span>
       </a>
-      <button onclick="document.getElementById(mobileNavOverlay).classList.add(open); document.body.style.overflow=hidden;" aria-label="Open Navigation Menu" class="w-9 h-9 rounded-xl border border-[#E4E1D4] bg-white flex items-center justify-center text-[var(--ink)] hover:bg-[#F5F4EC] transition-colors shadow-2xs">
-        <i class="ph-bold ph-list text-[19px]"></i>
+      <button onclick="document.getElementById('mobileNavOverlay').classList.add('open'); document.body.style.overflow='hidden';" aria-label="Open Navigation Menu" class="w-8 h-8 rounded-xl border border-[#E4E1D4] bg-white flex items-center justify-center text-[var(--ink)] hover:bg-[#F5F4EC] transition-colors shadow-2xs">
+        <i class="ph-bold ph-list text-[17px]"></i>
       </button>
     </div>
   </header>
