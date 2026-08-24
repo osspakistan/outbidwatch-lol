@@ -19,7 +19,7 @@ In August 2026, Jonathan Wilke launched `outbid.lol`, igniting a viral explosion
 
 I built **OutbidWatch** to solve the chaos: an open, high-integrity directory and live community observatory that tracks the exact chronological lineage of every platform, verifies true bidding mechanics, maps builder geographic provenance, and provides real-time community monitoring.
 
-- **Live URL**: [https://outbidwatch.lol](https://outbidwatch.lol) (Edge: [https://outbidwatch.awaisalwaisy.workers.dev](https://outbidwatch.awaisalwaisy.workers.dev))
+- **Live URL**: [https://outbidwatch.lol](https://outbidwatch.lol)
 - **Live Community Timeline**: [https://outbidwatch.lol/timeline](https://outbidwatch.lol/timeline)
 - **Global Builder Map**: [https://outbidwatch.lol/map](https://outbidwatch.lol/map)
 - **Built-in First-Party Analytics**: [https://outbidwatch.lol/analytics](https://outbidwatch.lol/analytics)
