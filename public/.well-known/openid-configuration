@@ -1,0 +1,34 @@
+{
+  "issuer": "https://outbidwatch.awaisalwaisy.workers.dev",
+  "authorization_endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/auth/authorize",
+  "token_endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/auth/token",
+  "userinfo_endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/auth/userinfo",
+  "jwks_uri": "https://outbidwatch.awaisalwaisy.workers.dev/auth/jwks.json",
+  "response_types_supported": [
+    "token",
+    "id_token"
+  ],
+  "subject_types_supported": [
+    "public"
+  ],
+  "id_token_signing_alg_values_supported": [
+    "RS256",
+    "none"
+  ],
+  "scopes_supported": [
+    "openid",
+    "profile",
+    "public:read"
+  ],
+  "agent_auth": {
+    "register_uri": "https://outbidwatch.awaisalwaisy.workers.dev/api/submit",
+    "supported_identity_types": [
+      "anonymous",
+      "agent_id",
+      "did"
+    ],
+    "credential_types": [
+      "none"
+    ]
+  }
+}

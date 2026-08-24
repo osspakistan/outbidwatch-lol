@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer Portal & API Docs | OutbidWatch</title>
+<meta name="description" content="Official developer documentation, OpenAPI 3.1 specification, MCP server integration, and REST endpoints for OutbidWatch.">
+<link rel="canonical" href="https://outbidwatch.awaisalwaisy.workers.dev/developers">
+<meta property="og:title" content="Developer Portal & API Docs | OutbidWatch">
+<meta property="og:description" content="Official developer documentation, OpenAPI 3.1 specification, MCP server integration, and REST endpoints for OutbidWatch.">
+<meta property="og:url" content="https://outbidwatch.awaisalwaisy.workers.dev/developers">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://outbidwatch.awaisalwaisy.workers.dev/api/logos/outbid.lol.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@alvaisy">
+<meta name="twitter:image" content="https://outbidwatch.awaisalwaisy.workers.dev/api/logos/outbid.lol.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+</head>
+<body class="min-h-screen">
+
+<div class="max-w-app mx-auto px-4 sm:px-6 min-h-screen flex flex-col py-8">
+  <header class="pb-6 flex items-center justify-between border-b border-[#E4E1D4]/60 mb-8">
+    <a href="/" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--mosambi);">
+        <i class="ph-fill ph-gavel text-[16px]" style="color:#1E2417;"></i>
+      </div>
+      <span class="display font-extrabold text-[18px] tracking-tight text-[var(--ink)]">outbidwatch</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <a href="/" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]">Directory</a>
+      <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]">Timeline</a>
+      <a href="/developers" class="pill px-3.5 py-1.5 text-[13px] font-bold bg-[var(--ink)] text-white shadow-sm">Developers</a>
+    </div>
+  </header>
+
+  <main class="space-y-8">
+    <div>
+      <h1 class="display font-extrabold text-[32px] text-[var(--ink)] mb-2">Developer & AI Agent Portal</h1>
+      <p class="text-[15.5px] text-[#5B5A4E] max-w-2xl leading-relaxed">
+        OutbidWatch provides 100% open, high-performance REST APIs, Model Context Protocol (MCP) toolkits, and machine-readable discovery specifications for human developers and autonomous AI agents.
+      </p>
+    </div>
+
+    <!-- Quick Links Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <a href="/openapi.json" target="_blank" class="card p-5 hover:border-[#CCD99B] transition-all group">
+        <div class="w-10 h-10 rounded-xl bg-[#EBF0D2] flex items-center justify-center mb-3 text-[#556B2F]">
+          <i class="ph-bold ph-code text-[20px]"></i>
+        </div>
+        <h3 class="font-bold text-[16px] text-[var(--ink)] group-hover:text-[#556B2F]">OpenAPI 3.1 Spec</h3>
+        <p class="text-[13px] text-[#8A8574] mt-1">Full typed schemas & endpoints.</p>
+      </a>
+
+      <a href="/.well-known/mcp/server-card.json" target="_blank" class="card p-5 hover:border-[#CCD99B] transition-all group">
+        <div class="w-10 h-10 rounded-xl bg-[#EBF0D2] flex items-center justify-center mb-3 text-[#556B2F]">
+          <i class="ph-bold ph-cpu text-[20px]"></i>
+        </div>
+        <h3 class="font-bold text-[16px] text-[var(--ink)] group-hover:text-[#556B2F]">MCP Server Card</h3>
+        <p class="text-[13px] text-[#8A8574] mt-1">Model Context Protocol for LLMs.</p>
+      </a>
+
+      <a href="/llms.txt" target="_blank" class="card p-5 hover:border-[#CCD99B] transition-all group">
+        <div class="w-10 h-10 rounded-xl bg-[#EBF0D2] flex items-center justify-center mb-3 text-[#556B2F]">
+          <i class="ph-bold ph-sparkle text-[20px]"></i>
+        </div>
+        <h3 class="font-bold text-[16px] text-[var(--ink)] group-hover:text-[#556B2F]">llms.txt Guide</h3>
+        <p class="text-[13px] text-[#8A8574] mt-1">Agent instructions & data models.</p>
+      </a>
+    </div>
+
+    <!-- API Reference Cards -->
+    <div class="card p-6 sm:p-8 space-y-6">
+      <h2 class="display font-bold text-[20px] text-[var(--ink)]">REST API Quickstart</h2>
+
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="pill px-2.5 py-0.5 text-[11px] font-bold bg-[#EBF0D2] text-[#556B2F]">GET</span>
+          <code class="font-mono text-[14px] text-[var(--ink)] font-semibold">/api/sites</code>
+        </div>
+        <p class="text-[14px] text-[#5B5A4E] mb-2">Fetch paginated list of all 192 bidding platforms with categories and founder handles.</p>
+        <pre class="bg-[#1E2417] text-[#D8E69E] p-4 rounded-xl text-[13px] font-mono overflow-x-auto"><code>curl -s "https://outbidwatch.awaisalwaisy.workers.dev/api/sites?page=1&limit=10&sort=oldest" | jq</code></pre>
+      </div>
+
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="pill px-2.5 py-0.5 text-[11px] font-bold bg-[#EBF0D2] text-[#556B2F]">GET</span>
+          <code class="font-mono text-[14px] text-[var(--ink)] font-semibold">/api/timeline</code>
+        </div>
+        <p class="text-[14px] text-[#5B5A4E] mb-2">Fetch curated real-time X posts about outbid leaderboards.</p>
+        <pre class="bg-[#1E2417] text-[#D8E69E] p-4 rounded-xl text-[13px] font-mono overflow-x-auto"><code>curl -s "https://outbidwatch.awaisalwaisy.workers.dev/api/timeline" | jq</code></pre>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card.json",
+  "serverInfo": {
+    "name": "outbidwatch-mcp",
+    "version": "1.0.0",
+    "description": "Model Context Protocol (MCP) server providing real-time data on pay-to-rank bidding platforms and community timeline.",
+    "author": "Awais Alwaisy (@alvaisy)",
+    "homepage": "https://outbidwatch.awaisalwaisy.workers.dev"
+  },
+  "transport": {
+    "type": "http",
+    "endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/api/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "list": [
+        {
+          "name": "search_platforms",
+          "description": "Search pay-to-rank bidding platforms by keyword, category, or founder location."
+        },
+        {
+          "name": "get_timeline_posts",
+          "description": "Retrieve latest curated X posts, launch announcements, and downtime discussions about outbid leaderboards."
+        }
+      ]
+    }
+  }
+}

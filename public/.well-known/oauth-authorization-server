@@ -1,0 +1,66 @@
+{
+  "issuer": "https://outbidwatch.awaisalwaisy.workers.dev",
+  "authorization_endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/auth/authorize",
+  "token_endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/auth/token",
+  "registration_endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/api/submit",
+  "response_types_supported": [
+    "token",
+    "code"
+  ],
+  "grant_types_supported": [
+    "implicit",
+    "client_credentials",
+    "anonymous"
+  ],
+  "token_endpoint_auth_methods_supported": [
+    "none"
+  ],
+  "scopes_supported": [
+    "public:read",
+    "public:submit"
+  ],
+  "service_documentation": "https://outbidwatch.awaisalwaisy.workers.dev/auth.md",
+  "agent_auth": {
+    "skill": "https://isitagentready.com/.well-known/agent-skills/auth-md/SKILL.md",
+    "register_uri": "https://outbidwatch.awaisalwaisy.workers.dev/api/submit",
+    "claim_uri": "https://outbidwatch.awaisalwaisy.workers.dev/api/submit",
+    "revocation_uri": "https://outbidwatch.awaisalwaisy.workers.dev/api/submit",
+    "identity_types_supported": [
+      "anonymous",
+      "verified_email",
+      "identity_assertion"
+    ],
+    "credential_types": [
+      "none",
+      "bearer"
+    ],
+    "credential_types_supported": [
+      "none",
+      "bearer"
+    ],
+    "anonymous": {
+      "credential_types_supported": [
+        "none",
+        "bearer"
+      ],
+      "claim_uri": "https://outbidwatch.awaisalwaisy.workers.dev/api/submit"
+    },
+    "verified_email": {
+      "claim_uri": "https://outbidwatch.awaisalwaisy.workers.dev/api/submit",
+      "credential_types_supported": [
+        "none",
+        "bearer"
+      ]
+    },
+    "identity_assertion": {
+      "assertion_types_supported": [
+        "urn:ietf:params:oauth:token-type:id-jag",
+        "verified_email"
+      ],
+      "credential_types_supported": [
+        "none",
+        "bearer"
+      ]
+    }
+  }
+}

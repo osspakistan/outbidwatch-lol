@@ -1,0 +1,27 @@
+{
+  "name": "outbidwatch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/styles/input.css -o ./public/style.css --minify",
+    "predeploy": "bun run build:css",
+    "dev": "wrangler dev --test-scheduled",
+    "deploy": "bun run build:css && wrangler deploy",
+    "db:migrate": "wrangler d1 execute outbidwatch-db --remote --file=./schema.sql",
+    "db:migrate:local": "wrangler d1 execute outbidwatch-db --local --file=./schema.sql"
+  },
+  "dependencies": {
+    "@cloudflare/ai": "^1.2.2",
+    "hono": "^4.7.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "@phosphor-icons/core": "^2.1.1",
+    "@resvg/resvg-js": "^2.6.2",
+    "@tailwindcss/cli": "^4.3.3",
+    "sharp": "^0.35.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "wrangler": "^3.114.17"
+  }
+}

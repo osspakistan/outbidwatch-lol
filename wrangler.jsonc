@@ -1,0 +1,32 @@
+{
+  "name": "outbidwatch",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-03-24",
+  "routes": [
+    {
+      "pattern": "outbidwatch.lol",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.outbidwatch.lol",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "outbidwatch-db",
+      "database_id": "b5b7fc6e-7533-47c0-8e8c-d85db7ac2213"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "TREG_ORG": "amicoder",
+    "ALLOWED_ORIGINS": "outbidwatch.lol,www.outbidwatch.lol,outbidwatch.awaisalwaisy.workers.dev,localhost"
+  }
+}
+

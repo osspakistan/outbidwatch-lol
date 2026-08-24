@@ -1,0 +1,19 @@
+{
+  "protocol": {
+    "name": "acp",
+    "version": "1.0.0"
+  },
+  "api_base_url": "https://outbidwatch.awaisalwaisy.workers.dev/api",
+  "transports": [
+    "http",
+    "https"
+  ],
+  "capabilities": {
+    "services": [
+      "directory",
+      "timeline",
+      "submission"
+    ],
+    "pricing": "free"
+  }
+}

@@ -1,0 +1,36 @@
+# OutbidWatch Robots & AI Crawl Policy
+# Standard RFC 9309 & AI Content Signals Specification
+
+User-agent: *
+Allow: /
+
+# Dedicated AI Agent Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Content Usage Preferences (Content Signals RFC)
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+
+# Machine-Readable Endpoints
+Sitemap: https://outbidwatch.lol/sitemap.xml

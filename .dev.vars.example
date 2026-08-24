@@ -1,0 +1,15 @@
+# OutbidWatch Local Environment Variables (.dev.vars)
+# Copy this file to .dev.vars and add your secret tokens
+
+# Treg (TikHub) X Search API Token & Organization
+TREG_TOKEN="eyJ1aWQiOjI5NDAsImV4cCI6MTc5MDA5ODY1NywidHYiOjAsIm9yZyI6ImFtaWNvZGVyIn0.D0CFcqhss9RjsLAKYUo_h2OqZ92mi87UHMQXlsXiKhY"
+TREG_ORG="amicoder"
+
+# Context.dev Brand Logos Public Client ID
+CONTEXT_PUBLIC_ID="your-context-public-client-id"
+
+# X / Twitter API v2 Bearer Token (Optional alternative)
+X_BEARER_TOKEN="AAAAAAAAAAAAAAAAAAAAA..."
+
+# Optional Admin Key
+ADMIN_API_KEY="your-secure-admin-api-key"

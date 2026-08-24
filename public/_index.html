@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OutbidWatch | The Definitive Directory for Pay-to-Rank Bidding Platforms</title>
+<meta name="description" content="A directory of pay-to-rank leaderboards, sorted by domain registration date with verified founder handles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1" defer></script>
+<meta name="view-transition" content="same-origin">
+</head>
+<body class="min-h-screen">
+
+<div class="max-w-app mx-auto px-4 sm:px-6 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="pt-6 pb-4 flex items-center justify-between sticky top-0 bg-[var(--paper)]/95 backdrop-blur z-30 border-b border-transparent">
+    <a href="/" id="headerLogoLink" class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--mosambi);">
+        <i class="ph-fill ph-gavel text-[16px]" style="color:#1E2417;"></i>
+      </div>
+      <span class="display font-extrabold text-[18px] tracking-tight text-[var(--ink)] hidden sm:inline-block">outbidwatch</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <a href="/" id="headerDirLink" class="pill px-3.5 py-1.5 text-[13px] font-bold transition-colors bg-[var(--ink)] text-white shadow-sm">
+        Directory
+      </a>
+      <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">
+        Timeline
+      </a>
+    </div>
+  </header>
+
+  <!-- DIRECTORY VIEW WRAPPER (Preserved in DOM at all times) -->
+  <div id="directoryView" class="flex flex-col flex-1">
+
+    <!-- Hero Section -->
+    <section class="pt-4 pb-6">
+      <div id="heroBadge" class="pill inline-flex items-center gap-1.5 px-3 py-1 mb-3 status-live text-[12px] font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full" style="background: var(--mosambi-dark);"></span>
+        192 platforms cataloged · sorted by domain age
+      </div>
+      <h1 class="display text-[30px] sm:text-[34px] leading-[1.12] font-extrabold tracking-tight mb-3 text-[var(--ink)]">
+        Every builder<br>chasing the outbid trend.
+      </h1>
+      <p class="text-[14.5px] sm:text-[15px] text-[#5B5A4E] leading-relaxed mb-5 max-w-xl">
+        outbid.lol started the pay-to-rank leaderboard format. Over 190 builders have shipped their own versions since. We sort them by domain registration date so you can see who launched first.
+      </p>
+      <div class="flex flex-wrap items-center gap-2.5">
+        <button id="openSubmit" class="btn-primary pill px-5 py-3 text-[14px] font-bold flex items-center gap-2 shadow-sm">
+          <i class="ph-bold ph-plus"></i>
+          Submit a site
+        </button>
+      </div>
+    </section>
+
+    <!-- Sort explainer banner -->
+    <section class="card p-5 mb-5 shadow-sm" style="background: var(--ink);">
+      <p class="text-[12px] font-bold tracking-wide uppercase mb-1.5" style="color: var(--mosambi);">Ranked by domain registration date</p>
+      <p class="text-[12px] text-[#B9B6A4] flex items-center gap-1.5">
+        <i class="ph-bold ph-calendar-check text-[13px]" style="color: var(--mosambi);"></i>
+        Oldest domains sit at the top, regardless of current bid price or traffic.
+      </p>
+    </section>
+
+    <!-- Stats Grid -->
+    <section class="grid grid-cols-3 gap-2.5 sm:gap-3 mb-6">
+      <div class="card p-3.5 sm:p-4 text-center sm:text-left">
+        <p id="statsSitesCount" class="text-[22px] sm:text-[24px] font-extrabold display leading-none mb-1 text-[var(--ink)]">192</p>
+        <p class="text-[11.5px] text-[#8A8574] leading-tight font-medium">Platforms listed</p>
+      </div>
+      <div class="card p-3.5 sm:p-4 text-center sm:text-left">
+        <p id="statsLiveCount" class="text-[22px] sm:text-[24px] font-extrabold display leading-none mb-1" style="color: var(--mosambi-dark);">192</p>
+        <p class="text-[11.5px] text-[#8A8574] leading-tight font-medium">Active boards</p>
+      </div>
+      <div class="card p-3.5 sm:p-4 text-center sm:text-left">
+        <p id="statsOldestDate" class="text-[22px] sm:text-[24px] font-extrabold display leading-none mb-1 text-[var(--ink)]">Aug 2026</p>
+        <p class="text-[11.5px] text-[#8A8574] leading-tight font-medium">First registered</p>
+      </div>
+    </section>
+
+    <!-- Search and Filter Bar Row -->
+    <section class="mb-5">
+      <div class="flex items-center gap-2.5">
+        <!-- Search Input -->
+        <div class="relative flex-1">
+          <i class="ph-bold ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-[16px] text-[#8A8574]"></i>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search platforms, founders, or countries..."
+            class="w-full pl-11 pr-10 py-3 rounded-2xl border border-[#E4E1D4] bg-white text-[14px] text-[var(--ink)] outline-none focus:border-[var(--mosambi-dark)] focus:ring-2 focus:ring-[var(--mosambi-light)] transition-all shadow-sm"
+          />
+          <button id="searchClear" class="absolute right-3.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full flex items-center justify-center bg-[#F1EFE6] text-[#8A8574] hover:text-[var(--ink)] hidden">
+            <i class="ph-bold ph-x text-[11px]"></i>
+          </button>
+        </div>
+
+        <!-- Filter Button -->
+        <button id="openFilterBtn" class="pill px-4 py-3 rounded-2xl border border-[#E4E1D4] bg-white text-[var(--ink)] hover:bg-[#F5F4EC] hover:border-[#CCD99B] font-bold text-[13.5px] transition-all flex items-center gap-2 shrink-0 shadow-sm">
+          <i class="ph-bold ph-faders text-[16px] text-[#5B5A4E]"></i>
+          <span>Filter</span>
+          <span id="activeFilterBadge" class="w-5 h-5 rounded-full text-[11px] font-extrabold flex items-center justify-center hidden" style="background: var(--mosambi); color:#1E2417;">0</span>
+        </button>
+      </div>
+
+      <!-- Active Filter Indicator Bar -->
+      <div id="activeFilterIndicator" class="mt-2.5 flex items-center justify-between text-[12.5px] text-[#5B5A4E] hidden">
+        <span id="activeFilterText">Filtered by: <strong>All Sites</strong></span>
+        <button id="clearAllFiltersBtn" class="text-[12px] font-bold text-[var(--mosambi-dark)] hover:underline flex items-center gap-1">
+          <i class="ph-bold ph-x"></i> Clear filters
+        </button>
+      </div>
+    </section>
+
+    <!-- Live Directory Cards List -->
+    <main class="flex-1 pb-12">
+      <div id="loadingState" class="p-8 text-center text-[#8A8574] flex items-center justify-center gap-2">
+        <i class="ph-bold ph-spinner animate-spin text-[20px] text-[var(--mosambi-dark)]"></i>
+        <span class="text-[14px] font-medium">Updating directory...</span>
+      </div>
+
+      <div id="emptyState" class="card p-10 text-center hidden">
+        <div class="w-12 h-12 rounded-full bg-[#F5F4EC] flex items-center justify-center mx-auto mb-3 text-[#8A8574]">
+          <i class="ph-bold ph-magnifying-glass text-[20px]"></i>
+        </div>
+        <h3 class="display font-bold text-[17px] text-[var(--ink)] mb-1">No matching platforms found</h3>
+        <p class="text-[13px] text-[#8A8574] max-w-xs mx-auto">Try changing your search terms or clearing the active filters.</p>
+      </div>
+
+      <div id="sitesContainer" class="flex flex-col gap-3.5">
+        <!-- Cards rendered dynamically by app.js -->
+      </div>
+
+      <!-- Pagination Controls (Justify Between) -->
+      <div id="paginationControls" class="mt-7 flex items-center justify-between pt-4 border-t border-[#ECEAE0] hidden">
+        <button id="prevPageBtn" class="pill px-4 py-2 text-[13px] font-bold border border-[#E4E1D4] bg-white text-[var(--ink)] hover:bg-[#F5F4EC] disabled:opacity-35 disabled:cursor-not-allowed transition-all flex items-center gap-1.5 shadow-sm">
+          <i class="ph-bold ph-caret-left"></i> Prev
+        </button>
+        <div id="paginationPageDisplay" class="text-[13.5px] font-bold text-[var(--ink)] display">
+          Page <span id="currentPageNum" class="text-[var(--mosambi-dark)]">1</span> of <span id="totalPagesNum">8</span>
+        </div>
+        <button id="nextPageBtn" class="pill px-4 py-2 text-[13px] font-bold border border-[#E4E1D4] bg-white text-[var(--ink)] hover:bg-[#F5F4EC] disabled:opacity-35 disabled:cursor-not-allowed transition-all flex items-center gap-1.5 shadow-sm">
+          Next <i class="ph-bold ph-caret-right"></i>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- SINGLE BOARD PROFILE VIEW (Rendered seamlessly in-place) -->
+  <div id="boardProfileView" class="hidden flex flex-col flex-1 pb-12">
+    <!-- Profile content dynamically populated by app.js -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="pb-10 pt-4 border-t border-[#ECEAE0] flex flex-col sm:flex-row items-center justify-between gap-3 text-[12.5px] text-[#8A8574]">
+    <div class="flex items-center gap-2">
+      <span class="font-bold text-[var(--ink)]">outbidwatch</span>
+      <span>·</span>
+      <span>Verified pay-to-rank platform directory</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="/api/feed.json" target="_blank" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
+        <i class="ph-bold ph-rss text-[13px]"></i> JSON Feed
+      </a>
+      <span>·</span>
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
+        <i class="ph-bold ph-github-logo text-[13px]"></i> Open Source
+      </a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Filter Popover / Bottom Sheet Modal -->
+<div id="filterOverlay">
+  <div id="filterSheet">
+    <div class="sheet-handle"></div>
+
+    <div class="flex items-center justify-between mb-2">
+      <h2 class="display text-[20px] font-extrabold tracking-tight text-[var(--ink)]">Filter Directory</h2>
+      <button id="closeFilterBtn" class="w-8 h-8 rounded-full flex items-center justify-center bg-[#F5F4EC] text-[#5B5A4E] hover:bg-[#EAE7DC] transition-colors">
+        <i class="ph-bold ph-x text-[15px]"></i>
+      </button>
+    </div>
+    <p class="text-[13px] text-[#8A8574] mb-5">Filter platforms by category, sort order, or page size.</p>
+
+    <!-- Categories Section -->
+    <div class="mb-5">
+      <label class="text-[12.5px] font-extrabold text-[var(--ink)] uppercase tracking-wider block mb-2.5">Category</label>
+      <div id="filterCategoryTags" class="flex flex-wrap gap-1.5">
+        <!-- Categories pills loaded dynamically -->
+      </div>
+    </div>
+
+    <!-- Sort Ordering Section -->
+    <div class="mb-5">
+      <label class="text-[12.5px] font-extrabold text-[var(--ink)] uppercase tracking-wider block mb-2.5">Sort Order</label>
+      <div class="grid grid-cols-3 gap-2">
+        <button data-sort-val="oldest" class="sort-tag-btn pill py-2 px-3 text-[12.5px] font-bold border border-[var(--ink)] bg-[var(--ink)] text-white text-center transition-all">
+          Oldest (First)
+        </button>
+        <button data-sort-val="newest" class="sort-tag-btn pill py-2 px-3 text-[12.5px] font-bold border border-[#E4E1D4] bg-white text-[var(--ink)] text-center transition-all hover:bg-[#F5F4EC]">
+          Newest
+        </button>
+        <button data-sort-val="name" class="sort-tag-btn pill py-2 px-3 text-[12.5px] font-bold border border-[#E4E1D4] bg-white text-[var(--ink)] text-center transition-all hover:bg-[#F5F4EC]">
+          Domain (A-Z)
+        </button>
+      </div>
+    </div>
+
+    <!-- Page Size Section -->
+    <div class="mb-6">
+      <label class="text-[12.5px] font-extrabold text-[var(--ink)] uppercase tracking-wider block mb-2.5">Items Per Page</label>
+      <div class="grid grid-cols-4 gap-2">
+        <button data-pagesize-val="25" class="pagesize-tag-btn pill py-2 text-[12.5px] font-bold border border-[var(--ink)] bg-[var(--ink)] text-white text-center transition-all">
+          25
+        </button>
+        <button data-pagesize-val="50" class="pagesize-tag-btn pill py-2 text-[12.5px] font-bold border border-[#E4E1D4] bg-white text-[var(--ink)] text-center transition-all hover:bg-[#F5F4EC]">
+          50
+        </button>
+        <button data-pagesize-val="100" class="pagesize-tag-btn pill py-2 text-[12.5px] font-bold border border-[#E4E1D4] bg-white text-[var(--ink)] text-center transition-all hover:bg-[#F5F4EC]">
+          100
+        </button>
+        <button data-pagesize-val="0" class="pagesize-tag-btn pill py-2 text-[12.5px] font-bold border border-[#E4E1D4] bg-white text-[var(--ink)] text-center transition-all hover:bg-[#F5F4EC]">
+          All
+        </button>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center gap-3 pt-3 border-t border-[#ECEAE0]">
+      <button id="resetFiltersBtn" class="pill py-3 px-5 text-[13px] font-bold border border-[#E4E1D4] bg-white text-[#5B5A4E] hover:bg-[#F5F4EC] transition-colors">
+        Reset
+      </button>
+      <button id="applyFiltersBtn" class="btn-primary pill py-3 px-6 text-[13.5px] font-bold flex-1 text-center shadow-sm">
+        Apply Filters
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Submit Modal Dialog -->
+<div id="submitOverlay">
+  <div id="submitSheet">
+    <div class="sheet-handle"></div>
+
+    <div class="flex items-center justify-between mb-1">
+      <h2 class="display text-[20px] font-extrabold tracking-tight text-[var(--ink)]">Submit a platform</h2>
+      <button id="closeSubmit" class="w-8 h-8 rounded-full flex items-center justify-center bg-[#F5F4EC] text-[#5B5A4E] hover:bg-[#EAE7DC] transition-colors">
+        <i class="ph-bold ph-x text-[15px]"></i>
+      </button>
+    </div>
+    <p class="text-[13px] text-[#8A8574] mb-4 leading-relaxed">
+      We review each submission against public WHOIS data and founder accounts before listing.
+    </p>
+
+    <!-- Feedback banner (Duplicate warning or Success confirmation) -->
+    <div id="submitFeedback" class="mb-3 empty:hidden"></div>
+
+    <form id="submitForm" class="flex flex-col gap-3.5">
+      <div>
+        <label class="text-[12.5px] font-bold text-[var(--ink)] mb-1 block">Platform URL <span class="text-red-500">*</span></label>
+        <input id="submitUrl" type="url" required placeholder="https://example.lol" class="field-input">
+      </div>
+
+      <div>
+        <label class="text-[12.5px] font-bold text-[var(--ink)] mb-1 block">Founder's X Handle <span class="text-red-500">*</span></label>
+        <input id="submitHandle" type="text" required placeholder="@username" class="field-input">
+      </div>
+
+      <div class="grid grid-cols-2 gap-2.5">
+        <div>
+          <label class="text-[12.5px] font-bold text-[var(--ink)] mb-1 block">Location / Country <span class="text-red-500">*</span></label>
+          <input id="submitLocation" type="text" required placeholder="e.g. Madrid, Spain" class="field-input">
+        </div>
+        <div>
+          <label class="text-[12.5px] font-bold text-[var(--ink)] mb-1 block">Launch Date <span class="text-red-500">*</span></label>
+          <input id="submitDate" type="date" required class="field-input">
+        </div>
+      </div>
+
+      <div>
+        <label class="text-[12.5px] font-bold text-[var(--ink)] mb-1 block">Platform Currency</label>
+        <select id="submitCurrency" class="field-input cursor-pointer">
+          <option value="USD">USD ($)</option>
+          <option value="EUR">EUR (€)</option>
+          <option value="INR">INR (₹)</option>
+          <option value="SOL">SOL (◎)</option>
+          <option value="USDC">USDC ($)</option>
+          <option value="BRL">BRL (R$)</option>
+          <option value="GBP">GBP (£)</option>
+          <option value="CLICKS">CLICKS</option>
+          <option value="LIKES">LIKES</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="text-[12.5px] font-bold text-[var(--ink)] mb-1 block">Submitter Note <span class="text-[#8A8574] font-normal">(optional)</span></label>
+        <input id="submitNote" type="text" placeholder="Launch tweet URL or context..." class="field-input">
+      </div>
+
+      <button id="submitBtn" type="submit" class="btn-primary pill py-3.5 text-[14px] font-bold mt-1.5 flex items-center justify-center gap-2 shadow-sm">
+        <i class="ph-bold ph-paper-plane-tilt"></i>
+        Send for review
+      </button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

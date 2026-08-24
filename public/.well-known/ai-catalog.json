@@ -1,0 +1,38 @@
+{
+  "specVersion": "1.0.0",
+  "host": {
+    "domain": "outbidwatch.awaisalwaisy.workers.dev",
+    "name": "OutbidWatch",
+    "maintainer": "Awais Alwaisy (@alvaisy)"
+  },
+  "entries": [
+    {
+      "id": "urn:air:outbidwatch.awaisalwaisy.workers.dev:directory:platforms",
+      "identifier": "urn:air:outbidwatch.awaisalwaisy.workers.dev:directory:platforms",
+      "displayName": "OutbidWatch Platforms Directory",
+      "name": "OutbidWatch Platforms Directory",
+      "description": "Comprehensive registry of pay-to-rank bidding platforms sorted by domain registration date.",
+      "type": "application/json",
+      "url": "https://outbidwatch.awaisalwaisy.workers.dev/api/sites",
+      "representativeQueries": [
+        "What was the first pay to outbid leaderboard?",
+        "Who launched outbid.lol clones?",
+        "List active bidding websites by domain registration date"
+      ]
+    },
+    {
+      "id": "urn:air:outbidwatch.awaisalwaisy.workers.dev:timeline:community",
+      "identifier": "urn:air:outbidwatch.awaisalwaisy.workers.dev:timeline:community",
+      "displayName": "OutbidWatch Community Feed",
+      "name": "OutbidWatch Community Feed",
+      "description": "Real-time feed of developer discussions, launch posts, and metrics from X.",
+      "type": "application/json",
+      "url": "https://outbidwatch.awaisalwaisy.workers.dev/api/timeline",
+      "representativeQueries": [
+        "What is happening with outbid.lol downtime?",
+        "Jonathan Wilke vercel outbid revenue updates",
+        "Latest tweets about pay-to-rank leaderboards"
+      ]
+    }
+  ]
+}

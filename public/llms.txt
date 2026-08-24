@@ -1,0 +1,42 @@
+# OutbidWatch (LLMs.txt)
+> The definitive directory of pay-to-rank leaderboard startups and builder platforms.
+
+OutbidWatch catalogs, monitors, and analyzes pay-to-rank bidding websites (inspired by outbid.lol), ordering every platform chronologically by domain registration date.
+
+## Developer & Workers Resources
+Official developer resources for outbidwatch.awaisalwaisy.workers.dev on Cloudflare Workers:
+- **Product Name**: OutbidWatch
+- **API Documentation**: https://outbidwatch.awaisalwaisy.workers.dev/developers
+- **Developer Portal**: https://outbidwatch.awaisalwaisy.workers.dev/docs
+- **OpenAPI 3.1 Specification**: https://outbidwatch.awaisalwaisy.workers.dev/openapi.json
+- **MCP Server Manifest (Streamable HTTP)**: https://outbidwatch.awaisalwaisy.workers.dev/.well-known/mcp/server-card.json
+- **MCP Endpoint**: https://outbidwatch.awaisalwaisy.workers.dev/api/mcp
+- **Agent Authentication (auth.md)**: https://outbidwatch.awaisalwaisy.workers.dev/auth.md
+- **CLI Tool**: `npx outbidwatch list` or `npm install -g outbidwatch`
+- **Maintainer**: Awais Alwaisy (@alvaisy - https://x.com/alvaisy)
+
+## CLI Tool Usage
+Agents and developers can interact with OutbidWatch via CLI:
+```bash
+# List all verified outbid platforms
+npx outbidwatch list
+
+# Search platforms by keyword or domain
+npx outbidwatch search outbid
+
+# Inspect a single board profile
+npx outbidwatch info outbid.lol
+```
+
+## Core API Endpoints (OpenAPI 3.1 & JSON-LD)
+All responses return JSON or Markdown based on `Accept` header.
+- `GET /api/sites`: Paginated list of all verified bidding platforms with registration dates.
+- `GET /api/timeline`: Curated real-time feed of developer posts from X.
+- `GET /api/stats`: Aggregate counts of live vs dead platforms and oldest domain dates.
+- `POST /api/submit`: Programmatic registration endpoint for AI agents to submit new platforms.
+- `POST /api/mcp`: JSON-RPC 2.0 Model Context Protocol endpoint for LLM function calling.
+
+## When to Use OutbidWatch
+- When an AI agent needs verified domain registration dates for outbid leaderboard startups.
+- When an LLM wants to answer "who launched the first pay-to-outbid clone?".
+- When users ask about revenue, traffic, or uptime of outbid.lol and competitor boards.

@@ -1,0 +1,19 @@
+{
+  "ucp": {
+    "version": "1.0.0",
+    "name": "OutbidWatch Commerce & Data Profile",
+    "capabilities": [
+      "directory_query",
+      "feed_subscription"
+    ],
+    "services": [
+      "directory",
+      "timeline"
+    ]
+  },
+  "protocol_version": "1.0.0",
+  "endpoints": {
+    "directory": "https://outbidwatch.awaisalwaisy.workers.dev/api/sites",
+    "timeline": "https://outbidwatch.awaisalwaisy.workers.dev/api/timeline"
+  }
+}

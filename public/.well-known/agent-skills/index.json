@@ -1,0 +1,20 @@
+{
+  "$schema": "https://agentskills.io/schema/v0.2.0/index.json",
+  "version": "0.2.0",
+  "skills": [
+    {
+      "name": "outbid-leaderboard-discovery",
+      "type": "api",
+      "description": "Discover and query pay-to-rank leaderboard startups and their founding dates.",
+      "url": "https://outbidwatch.awaisalwaisy.workers.dev/api/sites",
+      "documentation": "https://outbidwatch.awaisalwaisy.workers.dev/llms.txt"
+    },
+    {
+      "name": "outbid-timeline-monitoring",
+      "type": "stream",
+      "description": "Monitor real-time founder reactions, metrics, and downtime reports for outbid platforms.",
+      "url": "https://outbidwatch.awaisalwaisy.workers.dev/api/timeline",
+      "documentation": "https://outbidwatch.awaisalwaisy.workers.dev/llms.txt"
+    }
+  ]
+}

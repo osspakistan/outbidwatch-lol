@@ -1,0 +1,42 @@
+{
+  "version": "2.0",
+  "protocol": "x402",
+  "name": "OutbidWatch x402 Protocol Service",
+  "description": "Agent-native HTTP payments for OutbidWatch data and analytics.",
+  "facilitator_url": "https://facilitator.x402.org",
+  "networks_supported": [
+    "eip155:8453",
+    "eip155:1"
+  ],
+  "assets_supported": [
+    {
+      "symbol": "USDC",
+      "address": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "network": "eip155:8453"
+    }
+  ],
+  "recipient_address": "0x0000000000000000000000000000000000000000",
+  "free_tier": true,
+  "routes": {
+    "/api/sites": {
+      "price": "0.00",
+      "currency": "USD",
+      "payment_required": false
+    },
+    "/api/timeline": {
+      "price": "0.00",
+      "currency": "USD",
+      "payment_required": false
+    },
+    "/api/stats": {
+      "price": "0.00",
+      "currency": "USD",
+      "payment_required": false
+    },
+    "/api/premium": {
+      "price": "0.001",
+      "currency": "USDC",
+      "payment_required": true
+    }
+  }
+}

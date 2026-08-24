@@ -1,0 +1,22 @@
+{
+  "resources": [
+    {
+      "resource": "https://outbidwatch.awaisalwaisy.workers.dev/api/sites",
+      "name": "OutbidWatch Platforms Directory API",
+      "description": "Query 192 verified pay-to-rank outbid leaderboard platforms.",
+      "price": "0",
+      "currency": "USDC",
+      "network": "eip155:8453",
+      "recipient": "0x0000000000000000000000000000000000000000"
+    },
+    {
+      "resource": "https://outbidwatch.awaisalwaisy.workers.dev/api/timeline",
+      "name": "OutbidWatch Community Feed API",
+      "description": "Real-time maker launch notes and commentary from X.",
+      "price": "0",
+      "currency": "USDC",
+      "network": "eip155:8453",
+      "recipient": "0x0000000000000000000000000000000000000000"
+    }
+  ]
+}

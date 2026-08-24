@@ -1,0 +1,36 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://outbidwatch.awaisalwaisy.workers.dev/api/sites",
+      "service-desc": [
+        {
+          "href": "https://outbidwatch.awaisalwaisy.workers.dev/openapi.json",
+          "type": "application/openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://outbidwatch.awaisalwaisy.workers.dev/llms.txt",
+          "type": "text/plain"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://outbidwatch.awaisalwaisy.workers.dev/api/stats",
+          "type": "application/json"
+        }
+      ],
+      "title": "OutbidWatch Platforms Directory API"
+    },
+    {
+      "anchor": "https://outbidwatch.awaisalwaisy.workers.dev/api/timeline",
+      "service-doc": [
+        {
+          "href": "https://outbidwatch.awaisalwaisy.workers.dev/llms.txt",
+          "type": "text/plain"
+        }
+      ],
+      "title": "OutbidWatch Real-Time Community Timeline API"
+    }
+  ]
+}

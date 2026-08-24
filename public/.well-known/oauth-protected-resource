@@ -1,0 +1,15 @@
+{
+  "resource": "https://outbidwatch.awaisalwaisy.workers.dev",
+  "authorization_servers": [
+    "https://outbidwatch.awaisalwaisy.workers.dev"
+  ],
+  "scopes_supported": [
+    "public:read",
+    "public:submit"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ],
+  "resource_documentation": "https://outbidwatch.awaisalwaisy.workers.dev/auth.md",
+  "note": "Open public read and programmatic submission access."
+}

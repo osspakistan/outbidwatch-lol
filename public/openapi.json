@@ -1,0 +1,513 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OutbidWatch API & Workers Developer Resources",
+    "version": "1.2.0",
+    "description": "Official API for querying outbid leaderboard startups, historical registration dates, and live X community discussions on Cloudflare Workers.",
+    "contact": {
+      "name": "Awais Alwaisy",
+      "url": "https://x.com/alvaisy"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://outbidwatch.lol",
+      "description": "OutbidWatch Primary Production Server"
+    },
+    {
+      "url": "https://outbidwatch.awaisalwaisy.workers.dev",
+      "description": "Cloudflare Workers Edge Server"
+    },
+    {
+      "url": "https://outbidwatch.lol/v1",
+      "description": "Version 1 API Alias"
+    }
+  ],
+  "paths": {
+    "/api/sites": {
+      "get": {
+        "summary": "List indexed outbid platforms",
+        "description": "Returns a paginated list of verified pay-to-rank bidding platforms.",
+        "operationId": "listSites",
+        "x-payment-info": {
+          "intent": "free",
+          "method": "free",
+          "amount": 0,
+          "currency": "USD"
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            },
+            "description": "Page number"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25
+            },
+            "description": "Items per page"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Filter by category"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "oldest",
+                "newest",
+                "name"
+              ]
+            },
+            "description": "Sort order"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Search query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful site list response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SiteListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/timeline": {
+      "get": {
+        "summary": "Get curated real-time X posts about outbid platforms",
+        "description": "Fetches latest community posts from Twitter/X discussing outbid leaderboards.",
+        "operationId": "getTimeline",
+        "x-payment-info": {
+          "intent": "free",
+          "method": "free",
+          "amount": 0,
+          "currency": "USD"
+        },
+        "responses": {
+          "200": {
+            "description": "Successful timeline response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimelineResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/stats": {
+      "get": {
+        "summary": "Get overall directory statistics",
+        "description": "Returns aggregate numbers on total indexed platforms and oldest launches.",
+        "operationId": "getStats",
+        "responses": {
+          "200": {
+            "description": "Successful stats response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatsResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/submit": {
+      "post": {
+        "summary": "Submit a new outbid platform",
+        "description": "Enables AI agents and developers to submit newly discovered bidding websites for indexing.",
+        "operationId": "submitPlatform",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubmissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Platform submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubmissionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequestError"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SiteItem": {
+        "type": "object",
+        "required": [
+          "id",
+          "domain",
+          "status",
+          "category",
+          "url"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "site_name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "live",
+              "dead",
+              "unclear"
+            ]
+          },
+          "founder_x_handle": {
+            "type": "string",
+            "nullable": true
+          },
+          "founder_location": {
+            "type": "string",
+            "nullable": true
+          },
+          "domain_registration_date": {
+            "type": "string",
+            "nullable": true
+          },
+          "summary_256": {
+            "type": "string",
+            "nullable": true
+          },
+          "url": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          }
+        }
+      },
+      "SiteListResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SiteItem"
+            }
+          },
+          "meta": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer"
+              },
+              "page": {
+                "type": "integer"
+              },
+              "limit": {
+                "type": "integer"
+              },
+              "total_pages": {
+                "type": "integer"
+              },
+              "has_next_page": {
+                "type": "boolean"
+              },
+              "has_prev_page": {
+                "type": "boolean"
+              }
+            }
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "TimelineTweet": {
+        "type": "object",
+        "required": [
+          "id",
+          "text",
+          "author_name",
+          "author_username",
+          "created_at",
+          "url"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "author_name": {
+            "type": "string"
+          },
+          "author_username": {
+            "type": "string"
+          },
+          "author_verified": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "media_url": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "TimelineResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimelineTweet"
+            }
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "StatsResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "total_sites": {
+                "type": "integer"
+              },
+              "live_sites": {
+                "type": "integer"
+              },
+              "dead_sites": {
+                "type": "integer"
+              }
+            }
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
+      "SubmissionRequest": {
+        "type": "object",
+        "required": [
+          "url",
+          "domain",
+          "site_name",
+          "category"
+        ],
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "site_name": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "founder_x_handle": {
+            "type": "string"
+          },
+          "submitter_note": {
+            "type": "string"
+          }
+        }
+      },
+      "SubmissionResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "message"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "site_id": {
+            "type": "string"
+          }
+        }
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "required": [
+          "type",
+          "title",
+          "status",
+          "detail"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "https://outbidwatch.awaisalwaisy.workers.dev/errors/not-found"
+          },
+          "title": {
+            "type": "string",
+            "example": "Resource Not Found"
+          },
+          "status": {
+            "type": "integer",
+            "example": 404
+          },
+          "detail": {
+            "type": "string",
+            "example": "The requested resource could not be found."
+          },
+          "instance": {
+            "type": "string",
+            "example": "/api/sites"
+          }
+        }
+      }
+    },
+    "responses": {
+      "BadRequestError": {
+        "description": "Bad Request - Invalid query parameters or body schema",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          }
+        }
+      },
+      "NotFoundError": {
+        "description": "Not Found - Requested board or resource does not exist",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal Server Error - Unexpected processing fault",
+        "content": {
+          "application/problem+json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          },
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ProblemDetails"
+            }
+          }
+        }
+      }
+    }
+  }
+}

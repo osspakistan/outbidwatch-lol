@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "outbidwatch",
+  "name_for_human": "OutbidWatch",
+  "description_for_model": "Plugin for searching pay-to-rank leaderboard startups and monitoring real-time builder discussions from X.",
+  "description_for_human": "Search outbid leaderboards and monitor maker discussions.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://outbidwatch.awaisalwaisy.workers.dev/openapi.json"
+  },
+  "mcp_server": {
+    "endpoint": "https://outbidwatch.awaisalwaisy.workers.dev/api/mcp",
+    "transport": "streamable_http"
+  }
+}
