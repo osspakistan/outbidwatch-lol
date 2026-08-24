@@ -149,28 +149,28 @@ export function renderMobileNavDrawer(options: NavOptions = {}): string {
 export function renderFooter(options: NavOptions = {}): string {
   return `
   <!-- Footer -->
-  <footer class="pb-10 pt-6 border-t border-[#ECEAE0] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[12.5px] text-[#8A8574]">
+  <footer class="pb-8 pt-5 border-t border-[#ECEAE0] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11.5px] text-[#8A8574]">
     <div class="text-center sm:text-left flex flex-col gap-0.5">
-      <span class="font-bold text-[14px] text-[var(--ink)] tracking-tight">outbidwatch</span>
-      <span class="text-[12px] text-[#8A8574]">Verified pay-to-rank platform directory</span>
+      <span class="font-bold text-[13px] text-[var(--ink)] tracking-tight">outbidwatch</span>
+      <span class="text-[11px] text-[#8A8574]">Verified pay-to-rank platform directory</span>
     </div>
-    <div class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-3.5 gap-y-1.5 font-medium">
+    <div class="flex flex-wrap items-center justify-center gap-x-2 sm:gap-x-2.5 gap-y-1 font-medium">
       <a href="/story" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-semibold text-[var(--ink)]">
-        <i class="ph-bold ph-book-open text-[13px]"></i> Story
+        <i class="ph-bold ph-book-open text-[12px]"></i> Story
       </a>
-      <span>·</span>
+      <span class="text-[#D0CDBF]">·</span>
       <a href="/about" class="hover:text-[var(--ink)] transition-colors">About</a>
-      <span>·</span>
+      <span class="text-[#D0CDBF]">·</span>
       <a href="/developers" class="hover:text-[var(--ink)] transition-colors">Developers</a>
-      <span>·</span>
+      <span class="text-[#D0CDBF]">·</span>
       <a href="/analytics" class="hover:text-[var(--ink)] transition-colors">Analytics</a>
-      <span>·</span>
+      <span class="text-[#D0CDBF]">·</span>
       <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1">
-        <i class="ph-bold ph-github-logo text-[13px]"></i> GitHub
+        <i class="ph-bold ph-github-logo text-[12px]"></i> GitHub
       </a>
-      <span>·</span>
+      <span class="text-[#D0CDBF]">·</span>
       <a href="/api/feed.json" target="_blank" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1">
-        <i class="ph-bold ph-rss text-[13px]"></i> Feed
+        <i class="ph-bold ph-rss text-[12px]"></i> Feed
       </a>
     </div>
   </footer>
