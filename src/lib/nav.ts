@@ -150,10 +150,9 @@ export function renderFooter(options: NavOptions = {}): string {
   return `
   <!-- Footer -->
   <footer class="pb-10 pt-6 border-t border-[#ECEAE0] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-[12.5px] text-[#8A8574]">
-    <div class="text-center sm:text-left flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
-      <span class="font-bold text-[var(--ink)]">outbidwatch</span>
-      <span class="hidden sm:inline-block">·</span>
-      <span class="text-[12px] sm:text-[12.5px]">Verified pay-to-rank platform directory</span>
+    <div class="text-center sm:text-left flex flex-col gap-0.5">
+      <span class="font-bold text-[14px] text-[var(--ink)] tracking-tight">outbidwatch</span>
+      <span class="text-[12px] text-[#8A8574]">Verified pay-to-rank platform directory</span>
     </div>
     <div class="flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-3.5 gap-y-1.5 font-medium">
       <a href="/story" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-semibold text-[var(--ink)]">
