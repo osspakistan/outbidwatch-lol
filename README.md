@@ -13,67 +13,67 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
 In August 2026, Jonathan Wilke launched `outbid.lol`, igniting a viral explosion of pay-to-rank leaderboard websites across the indie web. Within weeks, over 192 developers built and launched their own spin-offs across various niches (AI startups, domain names, creator profiles, regional markets, pixel walls, and newsletters).
 
 I built **OutbidWatch** to solve the chaos: an open, high-integrity directory and live community observatory that tracks the exact chronological lineage of every platform, verifies true bidding mechanics, maps builder geographic provenance, and provides real-time community monitoring.
 
-- 🌐 **Live URL**: [https://outbidwatch.lol](https://outbidwatch.lol) (Edge: [https://outbidwatch.awaisalwaisy.workers.dev](https://outbidwatch.awaisalwaisy.workers.dev))
-- ⏱️ **Live Community Timeline**: [https://outbidwatch.lol/timeline](https://outbidwatch.lol/timeline)
-- 🗺️ **Global Builder Map**: [https://outbidwatch.lol/map](https://outbidwatch.lol/map)
-- 📊 **Built-in First-Party Analytics**: [https://outbidwatch.lol/analytics](https://outbidwatch.lol/analytics)
-- 📖 **Founder Story**: [https://outbidwatch.lol/story](https://outbidwatch.lol/story)
-- 🧑‍💻 **Maintainer**: Awais Alwaisy ([@alvaisy](https://x.com/alvaisy) on X)
-- 🐙 **Repository**: [https://github.com/osspakistan/outbidwatch-lol](https://github.com/osspakistan/outbidwatch-lol)
+- **Live URL**: [https://outbidwatch.lol](https://outbidwatch.lol) (Edge: [https://outbidwatch.awaisalwaisy.workers.dev](https://outbidwatch.awaisalwaisy.workers.dev))
+- **Live Community Timeline**: [https://outbidwatch.lol/timeline](https://outbidwatch.lol/timeline)
+- **Global Builder Map**: [https://outbidwatch.lol/map](https://outbidwatch.lol/map)
+- **Built-in First-Party Analytics**: [https://outbidwatch.lol/analytics](https://outbidwatch.lol/analytics)
+- **Founder Story**: [https://outbidwatch.lol/story](https://outbidwatch.lol/story)
+- **Maintainer**: Awais Alwaisy ([@alvaisy](https://x.com/alvaisy) on X)
+- **Repository**: [https://github.com/osspakistan/outbidwatch-lol](https://github.com/osspakistan/outbidwatch-lol)
 
 ---
 
-## ✨ Key Features & Architecture Highlights
+## Key Features & Architecture Highlights
 
-### 1. ⚡ Zero-Framework Architecture (Pure Vanilla + Hono SSR)
+### 1. Zero-Framework Architecture (Pure Vanilla + Hono SSR)
 OutbidWatch does not ship bloated client-side runtimes like React, Next.js, or Vue. 
 - **Lightning Fast Edge SSR**: Hono v4 renders semantic HTML directly on Cloudflare Workers edge nodes in under 15ms.
 - **Ultra-lightweight Client**: A single, clean `public/app.js` script handles debounced search, modal drawers, and spring view transitions.
 - **Tailwind CSS v4 Pre-compiled**: Standalone static bundle (~29KB minified, ~7KB gzip) with zero runtime CSS-in-JS calculation.
-- 🔗 *Read more*: [Architecture & Zero-Framework Guide](docs/architecture-and-tech-stack.md)
+- *Read more*: [Architecture & Zero-Framework Guide](docs/architecture-and-tech-stack.md)
 
-### 2. 🚀 Blazing Lighthouse Performance Scores
+### 2. Blazing Lighthouse Performance Scores
 - **Desktop Performance**: **90+ Lighthouse score** across Performance, Accessibility, Best Practices, and SEO.
 - **Mobile Performance**: **75+ Lighthouse score**, engineered with `content-visibility: auto` off-screen DOM virtualization for smooth scrolling on low-power devices.
 
-### 3. 🎯 192+ Verified Outbid Platforms & Chronological Lineage
+### 3. 192+ Verified Outbid Platforms & Chronological Lineage
 - **Pure Outbid Integrity**: Zero generic link farms or static directories — 100% of listed sites have active bidding or pay-to-rank mechanics.
 - **Domain Registration Date is King**: Ranked chronologically by authoritative WHOIS / RDAP domain creation dates, recognizing true pioneers regardless of bid price.
 - **Geographic Provenance Audit**: Locations classified by audit source (`self_reported`, `whois_registry`, or `inferred`).
-- 🔗 *Read more*: [Data Pipeline & Ingestion Methodology](docs/data-pipeline-and-provenance.md)
+- *Read more*: [Data Pipeline & Ingestion Methodology](docs/data-pipeline-and-provenance.md)
 
-### 4. 📱 Mobile-First Responsive Experience
+### 4. Mobile-First Responsive Experience
 - Clean, uncluttered mobile card viewports hiding redundant badges while retaining full founder handles and categories.
 - Spring-physics morphing view transitions between cards and board viewports.
 - Real-time debounced asynchronous search querying across domains, founder handles, categories, and country names.
 
-### 5. ⏱️ Live Community Timeline (`/timeline`)
+### 5. Live Community Timeline (/timeline)
 - Real-time curated stream tracking builder launches, milestone announcements, downtime discussions, and drama from X.
 - Embedded video support with loop controls, native image screenshots, and verified author badges.
 
-### 6. 📊 Built-in Privacy-Preserving Analytics (`/analytics`)
+### 6. Built-in Privacy-Preserving Analytics (/analytics)
 - 100% first-party telemetry with **zero third-party tracking scripts** (no Google Analytics, no Mixpanel).
 - Tracks unique visitors, geographic distribution via Cloudflare `CF-IPCountry`, hardware categories, and outbound referral clicks.
-- 🔗 *Read more*: [Built-in Analytics Documentation](docs/built-in-analytics.md)
+- *Read more*: [Built-in Analytics Documentation](docs/built-in-analytics.md)
 
-### 7. 🗺️ Interactive Global Builder Map (`/map`)
+### 7. Interactive Global Builder Map (/map)
 - Visual interactive map pinpointing indie makers and outbid startups worldwide across North America, Europe, Asia, Latin America, and Oceania.
 
-### 8. 🤖 100/100 AI Agent Readiness & WebMCP Native
+### 8. 100/100 AI Agent Readiness & WebMCP Native
 - **Vercel Agent-Ready Benchmark**: **98 / 100**
 - **Cloudflare AI Crawler Compatibility**: **93 / 100**
 - Supports Markdown content negotiation (`Accept: text/markdown`), direct `.md` URLs, [`/llms.txt`](https://outbidwatch.lol/llms.txt), RFC 9727 API Catalog, SEP-1649 MCP Server Card, and WebMCP protocol.
-- 🔗 *Read more*: [AI Agent Readiness Guide](docs/agent-readiness.md)
+- *Read more*: [AI Agent Readiness Guide](docs/agent-readiness.md)
 
 ---
 
-## 🗂️ Documentation Directory
+## Documentation Directory
 
 | Document | Description |
 |---|---|
@@ -87,7 +87,7 @@ OutbidWatch does not ship bloated client-side runtimes like React, Next.js, or V
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ```
                                   ┌─────────────────────────────┐
@@ -121,7 +121,7 @@ OutbidWatch does not ship bloated client-side runtimes like React, Next.js, or V
 
 ---
 
-## 💻 Local Development Setup
+## Local Development Setup
 
 ### Prerequisites
 - [Bun](https://bun.sh/) (v1.1+)
@@ -160,7 +160,7 @@ Visit `http://localhost:8787` in your browser.
 
 ---
 
-## 🗄️ Database Migrations (Cloudflare D1)
+## Database Migrations (Cloudflare D1)
 
 OutbidWatch uses **Cloudflare D1** (Serverless SQLite) with binding `outbidwatch-db` (`b5b7fc6e-7533-47c0-8e8c-d85db7ac2213`).
 
@@ -184,7 +184,7 @@ wrangler d1 execute outbidwatch-db --remote --command="SELECT id, domain, status
 
 ---
 
-## 🚀 Production Deployment
+## Production Deployment
 
 Deploying compiles minified CSS and updates Cloudflare Workers triggers on `outbidwatch.lol` and `www.outbidwatch.lol`:
 
@@ -194,13 +194,13 @@ bun run deploy
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read [**CONTRIBUTING.md**](CONTRIBUTING.md) for instructions on proposing new features, adding outbid platforms, and following our pull request guidelines.
 
 ---
 
-## 📄 License
+## License
 
 This project is open source and available under the [**MIT License**](LICENSE).
 
