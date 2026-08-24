@@ -97,7 +97,8 @@ h1, h2, h3, h4, .display {
 
 /* Modals, Drawers and Bottom Sheets */
 #submitOverlay,
-#filterOverlay {
+#filterOverlay,
+#mobileNavOverlay {
   position: fixed;
   inset: 0;
   background: rgba(35, 40, 28, 0.45);
@@ -113,13 +114,15 @@ h1, h2, h3, h4, .display {
 }
 
 #submitOverlay.open,
-#filterOverlay.open {
+#filterOverlay.open,
+#mobileNavOverlay.open {
   opacity: 1;
   pointer-events: auto;
 }
 
 #submitSheet,
-#filterSheet {
+#filterSheet,
+#mobileNavSheet {
   background: #ffffff;
   width: 100%;
   max-width: 520px;
@@ -133,7 +136,8 @@ h1, h2, h3, h4, .display {
 }
 
 #submitOverlay.open #submitSheet,
-#filterOverlay.open #filterSheet {
+#filterOverlay.open #filterSheet,
+#mobileNavOverlay.open #mobileNavSheet {
   transform: translateY(0);
 }
 
@@ -259,13 +263,15 @@ h1, h2, h3, h4, .display {
 
 @media (min-width: 640px) {
   #submitOverlay,
-  #filterOverlay {
+  #filterOverlay,
+  #mobileNavOverlay {
     align-items: center;
     padding: 20px;
   }
 
   #submitSheet,
-  #filterSheet {
+  #filterSheet,
+  #mobileNavSheet {
     border-radius: 24px;
     padding: 28px 24px;
     transform: translateY(16px) scale(0.97);
@@ -274,7 +280,8 @@ h1, h2, h3, h4, .display {
   }
 
   #submitOverlay.open #submitSheet,
-  #filterOverlay.open #filterSheet {
+  #filterOverlay.open #filterSheet,
+  #mobileNavOverlay.open #mobileNavSheet {
     transform: translateY(0) scale(1);
     opacity: 1;
   }

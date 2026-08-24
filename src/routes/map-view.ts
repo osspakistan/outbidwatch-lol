@@ -4,6 +4,7 @@ import { getDb } from '../db/index';
 import { resolveCoordinates } from '../lib/geo';
 import { enrichSiteLogo } from '../lib/utils';
 import type { MapSiteItem } from './map-api';
+import { renderHeader, renderMobileNavDrawer, renderFooter } from '../lib/nav';
 
 export const mapViewRouter = new Hono<{ Bindings: Env; Variables: AppVariables }>();
 
@@ -330,30 +331,7 @@ export const handleMapView = async (c: any) => {
 
 <div class="max-w-app mx-auto px-4 sm:px-6 min-h-screen flex flex-col flex-1 w-full">
 
-  <!-- Header Navigation -->
-  <header class="pt-6 pb-4 flex items-center justify-between sticky top-0 bg-[var(--paper)]/95 backdrop-blur z-30 border-b border-transparent">
-    <a href="/" id="headerLogoLink" class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--mosambi);">
-        <i class="ph-fill ph-gavel text-[16px]" style="color:#1E2417;"></i>
-      </div>
-      <span class="display font-extrabold text-[18px] tracking-tight text-[var(--ink)] hidden sm:inline-block">outbidwatch</span>
-    </a>
-    <div class="flex items-center gap-2">
-      <a href="/" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">
-        Directory
-      </a>
-      <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">
-        Timeline
-      </a>
-      <a href="/map" class="pill px-3.5 py-1.5 text-[13px] font-bold transition-colors bg-[var(--ink)] text-white shadow-sm">
-        Map
-      </a>
-      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="View Source on GitHub" class="pill px-3 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] hover:text-[var(--ink)] transition-colors flex items-center gap-1.5">
-        <i class="ph-bold ph-github-logo text-[15px]"></i>
-        <span class="hidden sm:inline-block">GitHub</span>
-      </a>
-    </div>
-  </header>
+  ${renderHeader({ active: 'map' })}
 
   <!-- Compact Stats Bar (Stripped 80% text, focused on map) -->
   <section class="pt-2 pb-3">
@@ -433,39 +411,11 @@ export const handleMapView = async (c: any) => {
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="pb-10 pt-4 border-t border-[#ECEAE0] flex flex-col sm:flex-row items-center justify-between gap-3 text-[12.5px] text-[#8A8574] mt-auto">
-    <div class="flex items-center gap-2">
-      <span class="font-bold text-[var(--ink)]">outbidwatch</span>
-      <span>·</span>
-      <span>Verified pay-to-rank platform directory</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <a href="/" class="hover:text-[var(--ink)] transition-colors font-medium">Directory</a>
-      <span>·</span>
-      <a href="/timeline" class="hover:text-[var(--ink)] transition-colors font-medium">Timeline</a>
-      <span>·</span>
-      <a href="/story" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-semibold text-[var(--ink)]">
-        <i class="ph-bold ph-book-open text-[13px]"></i> Story
-      </a>
-      <span>·</span>
-      <a href="/about" class="hover:text-[var(--ink)] transition-colors font-medium">About</a>
-      <span>·</span>
-      <a href="/developers" class="hover:text-[var(--ink)] transition-colors font-medium">Developers</a>
-      <span>·</span>
-      <a href="/analytics" class="hover:text-[var(--ink)] transition-colors font-medium">Analytics</a>
-      <span>·</span>
-      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
-        <i class="ph-bold ph-github-logo text-[13px]"></i> GitHub
-      </a>
-      <span>·</span>
-      <a href="/api/map" target="_blank" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
-        <i class="ph-bold ph-map-pin text-[13px]"></i> Map API
-      </a>
-    </div>
-  </footer>
+  ${renderFooter({ active: 'map' })}
 
 </div>
+
+${renderMobileNavDrawer({ active: 'map' })}
 
 <!-- Pass Pre-Computed Sites to Client for Instant Zero-Latency Render -->
 <script>

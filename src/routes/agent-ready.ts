@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import type { Env, AppVariables } from '../types/env';
 import { getDb } from '../db/index';
+import { renderHeader, renderMobileNavDrawer, renderFooter } from '../lib/nav';
 
 export const agentReadyRouter = new Hono<{ Bindings: Env; Variables: AppVariables }>();
 
@@ -891,24 +892,7 @@ To catalog every verified outbid experiment, attribute early founders, record ch
 
 <div class="max-w-app mx-auto px-4 sm:px-6 min-h-screen flex flex-col justify-between">
   
-  <!-- Header (Standard Site Width & Navigation) -->
-  <header class="pt-6 pb-4 flex items-center justify-between sticky top-0 bg-[var(--paper)]/95 backdrop-blur z-30 border-b border-transparent">
-    <a href="/" class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--mosambi);">
-        <i class="ph-fill ph-gavel text-[16px]" style="color:#1E2417;"></i>
-      </div>
-      <span class="display font-extrabold text-[18px] tracking-tight text-[var(--ink)]">outbidwatch</span>
-    </a>
-    <div class="flex items-center gap-2">
-      <a href="/" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Directory</a>
-      <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Timeline</a>
-      <a href="/story" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Story</a>
-      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="View Source on GitHub" class="pill px-3 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] hover:text-[var(--ink)] transition-colors flex items-center gap-1.5">
-        <i class="ph-bold ph-github-logo text-[15px]"></i>
-        <span class="hidden sm:inline-block">GitHub</span>
-      </a>
-    </div>
-  </header>
+  ${renderHeader({ active: 'about' })}
 
   <!-- Pure Plain Article Text -->
   <main class="py-8 flex-1">
@@ -959,31 +943,11 @@ To catalog every verified outbid experiment, attribute early founders, record ch
     </article>
   </main>
   
-  <!-- Footer (Standard Site Width & Style) -->
-  <footer class="pb-10 pt-4 border-t border-[#ECEAE0] flex flex-col sm:flex-row items-center justify-between gap-3 text-[12.5px] text-[#8A8574]">
-    <div class="flex items-center gap-2">
-      <span class="font-bold text-[var(--ink)]">outbidwatch</span>
-      <span>·</span>
-      <span>Verified pay-to-rank platform directory</span>
-    </div>
-    <div class="flex items-center gap-3">
-      <a href="/" class="hover:text-[var(--ink)] transition-colors">Directory</a>
-      <span>·</span>
-      <a href="/timeline" class="hover:text-[var(--ink)] transition-colors">Timeline</a>
-      <span>·</span>
-      <a href="/about" class="hover:text-[var(--ink)] transition-colors font-semibold text-[var(--ink)]">About</a>
-      <span>·</span>
-      <a href="/developers" class="hover:text-[var(--ink)] transition-colors">Developers</a>
-      <span>·</span>
-      <a href="/analytics" class="hover:text-[var(--ink)] transition-colors">Analytics</a>
-      <span>·</span>
-      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
-        <i class="ph-bold ph-github-logo text-[13px]"></i> GitHub
-      </a>
-    </div>
-  </footer>
+  ${renderFooter({ active: 'about' })}
 
 </div>
+
+${renderMobileNavDrawer({ active: 'about' })}
 </body>
 </html>`;
 
@@ -1108,22 +1072,10 @@ function renderDevPortal(c: any) {
 </head>
 <body class="min-h-screen">
 
-<div class="max-w-app mx-auto px-4 sm:px-6 min-h-screen flex flex-col py-8">
-  <header class="pb-6 flex items-center justify-between border-b border-[#E4E1D4]/60 mb-8">
-    <a href="/" class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style="background: var(--mosambi);">
-        <i class="ph-fill ph-gavel text-[16px]" style="color:#1E2417;"></i>
-      </div>
-      <span class="display font-extrabold text-[18px] tracking-tight text-[var(--ink)]">outbidwatch</span>
-    </a>
-    <div class="flex items-center gap-2">
-      <a href="/" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]">Directory</a>
-      <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]">Timeline</a>
-      <a href="/map" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B]">Map</a>
-    </div>
-  </header>
+<div class="max-w-app mx-auto px-4 sm:px-6 min-h-screen flex flex-col justify-between">
+  ${renderHeader({ active: 'developers' })}
 
-  <main class="space-y-8">
+  <main class="space-y-8 py-6 flex-1">
     <div>
       <h1 class="display font-extrabold text-[32px] text-[var(--ink)] mb-2">Developer & AI Agent Portal</h1>
       <p class="text-[15.5px] text-[#5B5A4E] max-w-2xl leading-relaxed">
@@ -1189,7 +1141,11 @@ function renderDevPortal(c: any) {
       </div>
     </div>
   </main>
+
+  ${renderFooter({ active: 'developers' })}
 </div>
+
+${renderMobileNavDrawer({ active: 'developers' })}
 </body>
 </html>`;
 

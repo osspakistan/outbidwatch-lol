@@ -416,7 +416,14 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && filterOverlay.classList.contains('open')) closeFilter();
+      if (e.key === 'Escape') {
+        if (filterOverlay && filterOverlay.classList.contains('open')) closeFilter();
+        const navOverlay = document.getElementById('mobileNavOverlay');
+        if (navOverlay && navOverlay.classList.contains('open')) {
+          navOverlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      }
     });
 
     document.querySelectorAll('.sort-tag-btn').forEach((btn) => {
