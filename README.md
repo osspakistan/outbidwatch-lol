@@ -1,43 +1,93 @@
 # OutbidWatch
 
-> The definitive open directory, live community observatory, and lineage tracker for pay-to-rank outbid leaderboard platforms.
+> The definitive open-source directory, live community observatory, and lineage tracker for pay-to-rank outbid leaderboard platforms.
 
-[![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
-[![Cloudflare D1](https://img.shields.io/badge/Cloudflare-D1_SQLite-F38020?logo=sqlite&logoColor=white)](https://developers.cloudflare.com/d1/)
-[![Hono](https://img.shields.io/badge/Framework-Hono_v4-E36002?logo=hono&logoColor=white)](https://hono.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Agent Ready](https://img.shields.io/badge/AI_Agents-100%2F100_Ready-10B981?logo=openai&logoColor=white)](https://outbidwatch.awaisalwaisy.workers.dev/llms.txt)
-[![TypeScript](https://img.shields.io/badge/Language-TypeScript_Strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
----
-
-## Overview
-
-**OutbidWatch** is a curated, high-integrity directory and live community observatory indexing the rapid rise of competitive pay-to-rank leaderboards across the indie web. Every site in the directory has been strictly vetted to ensure it is a true bidding platform (where users spend currency to outbid each other for top rank positions), with 100% verified founder attribution, chronological domain registration tracking, and geographic provenance metadata.
-
-- **Production URL**: [https://outbidwatch.lol](https://outbidwatch.lol) (Edge: [https://outbidwatch.awaisalwaisy.workers.dev](https://outbidwatch.awaisalwaisy.workers.dev))
-- **Live Community Timeline**: [https://outbidwatch.lol/timeline](https://outbidwatch.lol/timeline)
-- **Founder Story**: [https://outbidwatch.lol/story](https://outbidwatch.lol/story)
-- **Founder & Maintainer**: Awais Alwaisy ([@alvaisy](https://x.com/alvaisy) on X)
+[![Live Site](https://img.shields.io/badge/Live%20Production-outbidwatch.lol-BACB45?style=flat-square&logo=cloudflare&logoColor=black)](https://outbidwatch.lol)
+[![GitHub License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+[![Cloudflare Workers](https://img.shields.io/badge/Edge%20Runtime-Cloudflare%20Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
+[![Cloudflare D1](https://img.shields.io/badge/Database-Cloudflare%20D1%20SQLite-F38020?style=flat-square&logo=sqlite&logoColor=white)](https://developers.cloudflare.com/d1/)
+[![Hono v4](https://img.shields.io/badge/Framework-Hono%20v4%20SSR-E36002?style=flat-square&logo=hono&logoColor=white)](https://hono.dev/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Styling-Tailwind%20v4%20CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Agent Ready](https://img.shields.io/badge/AI%20Agent%20Ready-98%2F100-10B981?style=flat-square&logo=openai&logoColor=white)](docs/agent-readiness.md)
+[![TypeScript Strict](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 
 ---
 
-## Key Highlights & Features
+## 📖 Overview
 
-* **192 Verified Platforms:** 100% pure outbid platforms (zero generic directories or standard SaaS).
-* **Chronological Domain Lineage:** Sorted by domain registration date so early pioneers are recognized regardless of current bid price or hype.
-* **Live Community Timeline (`/timeline`):** Real-time feed aggregating builder launch notes, downtime discussions, and revenue milestones from X (`outbid.lol`, `pay to outbid`, and `@jonathan_wilke`).
-* **Rich Media & Video Support:** Renders verified author checkmarks, resolved domain links (no `t.co` hashes), zoomable screenshot images, and native auto-looping MP4 video screen recordings with a `no-referrer` stream policy.
-* **10 Real Category Verticals:** Clean categorization without generic catch-alls (Games & Battles, SaaS & Apps, Pixel Walls, Creator Profiles, Meta Directories, Niche, Regional, AI Tools, Charity, VC).
-* **Location & Provenance Tracking:** Builder locations mapped with transparent audit notes (`self_reported`, `whois_registry`, `inferred`).
-* **Flicker-Free Spring View Transitions:** Seamless morphing transitions between directory cards and individual board profile pages (`/boards/:domain`).
-* **100/100 Agentic Readiness:** Full support for autonomous AI agents via Markdown content negotiation (`Accept: text/markdown`), `.md` URL routes, `llms.txt`, RFC 9727 API Catalog, SEP-1649 MCP Server Card, and Schema.org JSON-LD.
-* **Blazing Performance:** Pre-compiled static Tailwind CSS v4 (~7KB transfer), `content-visibility: auto` offscreen layout virtualization, and global Cloudflare Edge `Cache-Control`.
+In August 2026, Jonathan Wilke launched `outbid.lol`, igniting a viral explosion of pay-to-rank leaderboard websites across the indie web. Within weeks, over 192 developers built and launched their own spin-offs across various niches (AI startups, domain names, creator profiles, regional markets, pixel walls, and newsletters).
+
+I built **OutbidWatch** to solve the chaos: an open, high-integrity directory and live community observatory that tracks the exact chronological lineage of every platform, verifies true bidding mechanics, maps builder geographic provenance, and provides real-time community monitoring.
+
+- 🌐 **Live URL**: [https://outbidwatch.lol](https://outbidwatch.lol) (Edge: [https://outbidwatch.awaisalwaisy.workers.dev](https://outbidwatch.awaisalwaisy.workers.dev))
+- ⏱️ **Live Community Timeline**: [https://outbidwatch.lol/timeline](https://outbidwatch.lol/timeline)
+- 🗺️ **Global Builder Map**: [https://outbidwatch.lol/map](https://outbidwatch.lol/map)
+- 📊 **Built-in First-Party Analytics**: [https://outbidwatch.lol/analytics](https://outbidwatch.lol/analytics)
+- 📖 **Founder Story**: [https://outbidwatch.lol/story](https://outbidwatch.lol/story)
+- 🧑‍💻 **Maintainer**: Awais Alwaisy ([@alvaisy](https://x.com/alvaisy) on X)
+- 🐙 **Repository**: [https://github.com/osspakistan/outbidwatch-lol](https://github.com/osspakistan/outbidwatch-lol)
 
 ---
 
-## Architecture & Tech Stack
+## ✨ Key Features & Architecture Highlights
+
+### 1. ⚡ Zero-Framework Architecture (Pure Vanilla + Hono SSR)
+OutbidWatch does not ship bloated client-side runtimes like React, Next.js, or Vue. 
+- **Lightning Fast Edge SSR**: Hono v4 renders semantic HTML directly on Cloudflare Workers edge nodes in under 15ms.
+- **Ultra-lightweight Client**: A single, clean `public/app.js` script handles debounced search, modal drawers, and spring view transitions.
+- **Tailwind CSS v4 Pre-compiled**: Standalone static bundle (~29KB minified, ~7KB gzip) with zero runtime CSS-in-JS calculation.
+- 🔗 *Read more*: [Architecture & Zero-Framework Guide](docs/architecture-and-tech-stack.md)
+
+### 2. 🚀 Blazing Lighthouse Performance Scores
+- **Desktop Performance**: **90+ Lighthouse score** across Performance, Accessibility, Best Practices, and SEO.
+- **Mobile Performance**: **75+ Lighthouse score**, engineered with `content-visibility: auto` off-screen DOM virtualization for smooth scrolling on low-power devices.
+
+### 3. 🎯 192+ Verified Outbid Platforms & Chronological Lineage
+- **Pure Outbid Integrity**: Zero generic link farms or static directories — 100% of listed sites have active bidding or pay-to-rank mechanics.
+- **Domain Registration Date is King**: Ranked chronologically by authoritative WHOIS / RDAP domain creation dates, recognizing true pioneers regardless of bid price.
+- **Geographic Provenance Audit**: Locations classified by audit source (`self_reported`, `whois_registry`, or `inferred`).
+- 🔗 *Read more*: [Data Pipeline & Ingestion Methodology](docs/data-pipeline-and-provenance.md)
+
+### 4. 📱 Mobile-First Responsive Experience
+- Clean, uncluttered mobile card viewports hiding redundant badges while retaining full founder handles and categories.
+- Spring-physics morphing view transitions between cards and board viewports.
+- Real-time debounced asynchronous search querying across domains, founder handles, categories, and country names.
+
+### 5. ⏱️ Live Community Timeline (`/timeline`)
+- Real-time curated stream tracking builder launches, milestone announcements, downtime discussions, and drama from X.
+- Embedded video support with loop controls, native image screenshots, and verified author badges.
+
+### 6. 📊 Built-in Privacy-Preserving Analytics (`/analytics`)
+- 100% first-party telemetry with **zero third-party tracking scripts** (no Google Analytics, no Mixpanel).
+- Tracks unique visitors, geographic distribution via Cloudflare `CF-IPCountry`, hardware categories, and outbound referral clicks.
+- 🔗 *Read more*: [Built-in Analytics Documentation](docs/built-in-analytics.md)
+
+### 7. 🗺️ Interactive Global Builder Map (`/map`)
+- Visual interactive map pinpointing indie makers and outbid startups worldwide across North America, Europe, Asia, Latin America, and Oceania.
+
+### 8. 🤖 100/100 AI Agent Readiness & WebMCP Native
+- **Vercel Agent-Ready Benchmark**: **98 / 100**
+- **Cloudflare AI Crawler Compatibility**: **93 / 100**
+- Supports Markdown content negotiation (`Accept: text/markdown`), direct `.md` URLs, [`/llms.txt`](https://outbidwatch.lol/llms.txt), RFC 9727 API Catalog, SEP-1649 MCP Server Card, and WebMCP protocol.
+- 🔗 *Read more*: [AI Agent Readiness Guide](docs/agent-readiness.md)
+
+---
+
+## 🗂️ Documentation Directory
+
+| Document | Description |
+|---|---|
+| [**Architecture & Tech Stack**](docs/architecture-and-tech-stack.md) | Zero-framework philosophy, edge SSR with Hono, Tailwind v4, and performance benchmarks |
+| [**Data Pipeline & Provenance**](docs/data-pipeline-and-provenance.md) | How all 192+ platforms were scraped, verified, normalized, and chronologically indexed |
+| [**Built-in Analytics Engine**](docs/built-in-analytics.md) | Privacy-preserving, zero-cookie first-party telemetry system on Cloudflare D1 |
+| [**AI Agent Readiness Guide**](docs/agent-readiness.md) | Machine discovery, Markdown content negotiation, WebMCP, and MCP Server Card |
+| [**Contributing Guide**](CONTRIBUTING.md) | Code of conduct, local setup, PR guidelines, and platform submission instructions |
+| [**Submission SOP**](SUBMISSION.md) | Manual platform vetting checklist and approval standards |
+| [**License (MIT)**](LICENSE) | Open-source MIT License terms and permissions |
+
+---
+
+## 🛠️ Tech Stack
 
 ```
                                   ┌─────────────────────────────┐
@@ -55,245 +105,103 @@
 │                                           │                              │              │
 │                                           ▼                              ▼              │
 │  ┌──────────────────────┐   ┌───────────────────────────┐   ┌─────────────────────────┐ │
-│  │  Treg / X API Client │   │   DbRepository / D1 SQL   │   │  Cloudflare Edge Cache  │ │
-│  │ (2h Cached Searches) │   │  (outbidwatch-db SQLite)  │   │  (Public Static Assets) │ │
+│  │  First-Party         │   │   DbRepository / D1 SQL   │   │  Cloudflare Edge Cache  │ │
+│  │  Analytics Engine    │   │  (outbidwatch-db SQLite)  │   │  (Public Static Assets) │ │
 │  └──────────────────────┘   └───────────────────────────┘   └─────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## Project Structure
-
-```
-.
-├── schema.sql                 # D1 Database schema definition (sites, submissions, timeline_cache)
-├── seed.sql                   # Idempotent master dataset seed (192 verified sites)
-├── wrangler.jsonc             # Cloudflare Workers & D1 database bindings configuration
-├── .dev.vars.example          # Local environment variables & secrets template
-├── package.json               # Dependencies, scripts, and build hooks
-├── tsconfig.json              # TypeScript strict configuration
-├── SUBMISSION.md              # Submission guidelines & manual ingestion SOP
-├── public/                    # Static assets & agent discovery metadata
-│   ├── style.css              # Pre-compiled, minified Tailwind CSS bundle (~29KB)
-│   ├── app.js                 # Client-side spring transitions & drawer logic
-│   ├── robots.txt             # RFC 9309 rules with AI crawlers & Content-Signals
-│   ├── llms.txt               # When-to-use guide & REST reference for LLMs
-│   ├── auth.md                # Agent authentication & public access policy
-│   ├── openapi.json           # OpenAPI 3.1.0 specification with MPP extensions
-│   └── .well-known/           # Standardized agent discovery endpoints
-│       ├── api-catalog        # RFC 9727 linkset API catalog
-│       ├── mcp/server-card.json # SEP-1649 Model Context Protocol card
-│       ├── agent-skills/      # Agent Skills Discovery RFC index
-│       ├── ai-catalog.json    # Agentic Resource Discovery (ARD) manifest
-│       ├── oauth-protected-resource # Public OAuth resource metadata
-│       ├── acp.json           # Agentic Commerce Protocol manifest
-│       └── ucp                # Universal Commerce Protocol profile
-└── src/
-    ├── index.ts               # Application entrypoint, Link middleware, & route mounting
-    ├── types/                 # Worker bindings, site entities, and API envelopes
-    ├── db/                    # D1 client factory & prepared queries
-    ├── middleware/            # CORS, logger, and agent-friendly 404 error handlers
-    ├── lib/
-    │   ├── geo.ts             # Geographic normalization helper
-    │   ├── utils.ts           # Logo proxy URL helpers
-    │   └── x-search.ts        # Parallel multi-query search with 2-hour D1 edge cache
-    ├── styles/
-    │   └── input.css          # Tailwind source CSS with spring transitions & variables
-    └── routes/
-        ├── directory-view.ts  # SSR Directory (/) and Markdown (/index.md)
-        ├── timeline-view.ts   # SSR Timeline (/timeline) and Markdown (/timeline.md)
-        ├── timeline-api.ts    # JSON API (/api/timeline)
-        ├── board-view.ts      # SSR Profile (/boards/:domain) and Markdown (.md)
-        ├── agent-ready.ts     # Robots, sitemaps, .well-known, /about, /privacy
-        ├── sites.ts           # REST /api/sites endpoints
-        ├── stats.ts           # REST /api/stats endpoint
-        ├── taxonomy.ts        # /api/categories, /api/countries, /api/currencies
-        ├── submit.ts          # /api/submit endpoint
-        ├── submissions.ts     # Admin submissions reviewer
-        ├── feed.ts            # /api/feed.json (JSON Feed v1.1)
-        └── logos.ts           # /api/logos/:domain.png (Secure Edge Proxy)
-```
+- **Serverless Edge Runtime**: Cloudflare Workers
+- **Application Framework**: Hono v4 (SSR + REST API)
+- **Database**: Cloudflare D1 (Serverless SQLite)
+- **Styling**: Tailwind CSS v4 (Pre-compiled static bundle)
+- **Icons**: Phosphor Icons (Vector SVG)
+- **Dynamic OG Image Engine**: Resvg + SVG Generator (`/api/og`)
+- **Package Manager & Runtime**: Bun (v1.1+)
 
 ---
 
-## Build & Development Workflow
+## 💻 Local Development Setup
 
 ### Prerequisites
-* [Bun](https://bun.sh/) (v1.1+)
-* [Cloudflare Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/)
+- [Bun](https://bun.sh/) (v1.1+)
+- [Cloudflare Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/)
 
-### 1. Install Dependencies
+### 1. Clone the Repository
+```bash
+git clone git@github.com:osspakistan/outbidwatch-lol.git
+cd outbidwatch-lol
+```
+
+### 2. Install Dependencies
 ```bash
 bun install
 ```
 
-### 2. Configure Local Secrets (`.dev.vars`)
-Create a local `.dev.vars` file (automatically ignored by git):
+### 3. Initialize Local D1 Database
 ```bash
-cp .dev.vars.example .dev.vars
+# Create local tables
+wrangler d1 execute outbidwatch-db --local --file=./schema.sql
+
+# Seed local database with 192 master platforms
+wrangler d1 execute outbidwatch-db --local --file=./seed.sql
 ```
 
-Add your optional credentials:
-```bash
-TREG_TOKEN=your_treg_token_here
-TREG_ORG=amicoder
-```
-
-### 3. Initialize & Seed Local D1 Database
-```bash
-bun run db:migrate:local
-bun x wrangler d1 execute outbidwatch-db --local --file=./seed.sql
-```
-
-### 4. Build Static CSS
-Compile the minified production stylesheet using Tailwind CLI:
+### 4. Build Static Stylesheet
 ```bash
 bun run build:css
 ```
 
-### 5. Run Local Development Server
+### 5. Start Local Server
 ```bash
 bun run dev
 ```
-The local server will be live at `http://localhost:8787`.
+Visit `http://localhost:8787` in your browser.
 
 ---
 
-## Database Migrations (Cloudflare D1)
+## 🗄️ Database Migrations (Cloudflare D1)
 
-OutbidWatch uses **Cloudflare D1** (Serverless SQLite) with database binding `outbidwatch-db` (`b5b7fc6e-7533-47c0-8e8c-d85db7ac2213`).
+OutbidWatch uses **Cloudflare D1** (Serverless SQLite) with binding `outbidwatch-db` (`b5b7fc6e-7533-47c0-8e8c-d85db7ac2213`).
 
-### 1. Apply Schema Migrations to Remote Production (`--remote`)
-Execute schema updates directly against the live production D1 database:
-
+### Apply to Remote Production (`--remote`)
 ```bash
-# Execute master schema on remote production D1
+# Execute schema migration on remote D1
 wrangler d1 execute outbidwatch-db --remote --file=./schema.sql
 
-# Seed initial verified platforms (if empty)
+# Seed remote D1 (first time setup)
 wrangler d1 execute outbidwatch-db --remote --file=./seed.sql
 ```
 
-### 2. Apply Schema Migrations to Local Environment (`--local`)
-Run migrations on the local development SQLite emulator:
-
-```bash
-# Local schema migration
-wrangler d1 execute outbidwatch-db --local --file=./schema.sql
-
-# Local seed
-wrangler d1 execute outbidwatch-db --local --file=./seed.sql
-```
-
-### 3. Verify & Query Remote D1 State
-Inspect live database records directly from your terminal:
-
+### Query Remote D1 State
 ```bash
 # Count total indexed platforms
 wrangler d1 execute outbidwatch-db --remote --command="SELECT count(*) as total_sites FROM sites;"
 
-# Inspect table schema
-wrangler d1 execute outbidwatch-db --remote --command="PRAGMA table_info(sites);"
-
 # Check pending submissions
-wrangler d1 execute outbidwatch-db --remote --command="SELECT id, domain, status, created_at FROM submissions WHERE status='pending';"
+wrangler d1 execute outbidwatch-db --remote --command="SELECT id, domain, status FROM submissions WHERE status='pending';"
 ```
 
 ---
 
-## Production Deployment (Cloudflare Workers)
+## 🚀 Production Deployment
 
-Deploying OutbidWatch compiles minified Tailwind CSS and deploys edge assets to both `outbidwatch.lol` and `outbidwatch.awaisalwaisy.workers.dev`:
+Deploying compiles minified CSS and updates Cloudflare Workers triggers on `outbidwatch.lol` and `www.outbidwatch.lol`:
 
-### 1. Set Production Secrets (Optional)
-```bash
-echo "your_treg_token_here" | wrangler secret put TREG_TOKEN
-```
-
-### 2. Deploy Worker & Static Assets
 ```bash
 bun run deploy
-# Or via global Wrangler:
-bun run build:css && wrangler deploy
 ```
 
 ---
 
-## AI Agent & LLM Integration (`.md` & Protocols)
+## 🤝 Contributing
 
-OutbidWatch is fully optimized for autonomous AI agents (OpenAI GPT-4o, Claude 3.5 Sonnet, Cursor, Perplexity):
-
-### 1. Markdown for Agents ([acceptmarkdown.com](https://acceptmarkdown.com))
-Any human or AI agent can view token-efficient Markdown by appending `.md` or passing `Accept: text/markdown`:
-
-| Human URL | AI Agent Markdown URL | Purpose |
-|---|---|---|
-| `/` | [`/index.md`](https://outbidwatch.awaisalwaisy.workers.dev/index.md) | Paginated platforms list with stats & categories |
-| `/timeline` | [`/timeline.md`](https://outbidwatch.awaisalwaisy.workers.dev/timeline.md) | Recent X discussions, metrics, and downtime updates |
-| `/boards/outbid.lol` | [`/boards/outbid.lol.md`](https://outbidwatch.awaisalwaisy.workers.dev/boards/outbid.lol.md) | Single board profile with WHOIS provenance |
-| `/about` | [`/about.md`](https://outbidwatch.awaisalwaisy.workers.dev/about.md) | About page & maintainer details |
-
-### 2. Standard Discovery Endpoints
-* **`/llms.txt`**: Concise guide on when and how LLMs should query OutbidWatch.
-* **`/llms-full.txt`**: Complete plain-text knowledge base of all 192 platforms.
-* **`/.well-known/api-catalog`**: RFC 9727 Linkset API catalog.
-* **`/.well-known/mcp/server-card.json`**: SEP-1649 MCP Server Card for tool calling.
-* **`/.well-known/agent-skills/index.json`**: Agent skills discovery index.
-* **`/.well-known/ai-catalog.json`**: ARD manifest with semantic query embeddings.
-* **`/robots.txt`**: Explicit crawl rules for AI bots + Content-Signals RFC preferences.
-* **`/sitemap.xml`**: Dynamic XML sitemap listing all 192 board profiles.
+Contributions are welcome! Please read [**CONTRIBUTING.md**](CONTRIBUTING.md) for instructions on proposing new features, adding outbid platforms, and following our pull request guidelines.
 
 ---
 
-## Public REST API Reference
+## 📄 License
 
-All API responses follow a consistent, fully typed JSON envelope:
+This project is open source and available under the [**MIT License**](LICENSE).
 
-```json
-{
-  "success": true,
-  "data": { ... },
-  "meta": {
-    "total": 192,
-    "page": 1,
-    "limit": 25,
-    "total_pages": 8,
-    "has_next_page": true,
-    "has_prev_page": false
-  },
-  "timestamp": "2026-08-24T12:00:00.000Z"
-}
-```
-
-| Method | Endpoint | Description | Query Parameters |
-|---|---|---|---|
-| `GET` | `/api/health` | System health check | None |
-| `GET` | `/api/stats` | Directory overview & stats | None |
-| `GET` | `/api/sites` | Paginated listing of platforms | `q`, `category`, `status`, `order_by`, `order_dir`, `limit`, `page` |
-| `GET` | `/api/sites/:slug` | Detailed site profile by slug | None |
-| `GET` | `/api/sites/domain/:domain` | Lookup by exact domain | None |
-| `GET` | `/api/timeline` | Curated real-time posts from X | None |
-| `GET` | `/api/categories` | 10 category verticals with live counts | None |
-| `GET` | `/api/countries` | Country breakdown with flags & counts | None |
-| `GET` | `/api/currencies` | Supported currencies breakdown | None |
-| `GET` | `/api/submit/check` | Pre-submit duplicate checker | `?domain=xyz.lol` |
-| `POST` | `/api/submit` | Submit platform to review queue | JSON Body |
-| `GET` | `/api/logos/:domain.png` | Edge logo proxy with 30-day CDN cache | None |
-| `GET` | `/api/feed.json` | JSON Feed v1.1 for aggregators | None |
-
----
-
-## Submissions & Verification Workflow
-
-OutbidWatch enforces strict verification for all new platform additions. Submissions are queued in the database and vetted by maintainers to prevent spam, duplicate domains, or non-bidding websites.
-
-For details on submitting a platform or how submissions are audited, read [**SUBMISSION.md**](SUBMISSION.md).
-
----
-
-## Maintainer & Community
-
-- **Built by**: Awais Alwaisy ([@alvaisy](https://x.com/alvaisy))
-- **Source Code**: [GitHub Repository](https://github.com/alvaisy/outbidwatch)
-- **License**: [MIT License](LICENSE)
+Built with precision by **Awais Alwaisy** ([@alvaisy](https://x.com/alvaisy) on X).
