@@ -119,7 +119,10 @@ Getting cooked on the scraper was the best thing that happened. It forced me to 
       <a href="/" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Directory</a>
       <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Timeline</a>
       <a href="/map" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Map</a>
-      <a href="/about" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">About</a>
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="View Source on GitHub" class="pill px-3 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] hover:text-[var(--ink)] transition-colors flex items-center gap-1.5">
+        <i class="ph-bold ph-github-logo text-[15px]"></i>
+        <span class="hidden sm:inline-block">GitHub</span>
+      </a>
     </div>
   </header>
 
@@ -253,6 +256,10 @@ Getting cooked on the scraper was the best thing that happened. It forced me to 
       <a href="/developers" class="hover:text-[var(--ink)] transition-colors">Developers</a>
       <span>·</span>
       <a href="/analytics" class="hover:text-[var(--ink)] transition-colors">Analytics</a>
+      <span>·</span>
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
+        <i class="ph-bold ph-github-logo text-[13px]"></i> GitHub
+      </a>
     </div>
   </footer>
 

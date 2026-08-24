@@ -903,6 +903,10 @@ To catalog every verified outbid experiment, attribute early founders, record ch
       <a href="/" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Directory</a>
       <a href="/timeline" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Timeline</a>
       <a href="/story" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">Story</a>
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="View Source on GitHub" class="pill px-3 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] hover:text-[var(--ink)] transition-colors flex items-center gap-1.5">
+        <i class="ph-bold ph-github-logo text-[15px]"></i>
+        <span class="hidden sm:inline-block">GitHub</span>
+      </a>
     </div>
   </header>
 
@@ -967,11 +971,15 @@ To catalog every verified outbid experiment, attribute early founders, record ch
       <span>·</span>
       <a href="/timeline" class="hover:text-[var(--ink)] transition-colors">Timeline</a>
       <span>·</span>
-      <a href="/story" class="hover:text-[var(--ink)] transition-colors font-semibold text-[var(--ink)]">Story</a>
+      <a href="/about" class="hover:text-[var(--ink)] transition-colors font-semibold text-[var(--ink)]">About</a>
       <span>·</span>
       <a href="/developers" class="hover:text-[var(--ink)] transition-colors">Developers</a>
       <span>·</span>
       <a href="/analytics" class="hover:text-[var(--ink)] transition-colors">Analytics</a>
+      <span>·</span>
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
+        <i class="ph-bold ph-github-logo text-[13px]"></i> GitHub
+      </a>
     </div>
   </footer>
 
@@ -1124,7 +1132,7 @@ function renderDevPortal(c: any) {
     </div>
 
     <!-- Quick Links Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
       <a href="/openapi.json" target="_blank" class="card p-5 hover:border-[#CCD99B] transition-all group">
         <div class="w-10 h-10 rounded-xl bg-[#EBF0D2] flex items-center justify-center mb-3 text-[#556B2F]">
           <i class="ph-bold ph-code text-[20px]"></i>
@@ -1147,6 +1155,14 @@ function renderDevPortal(c: any) {
         </div>
         <h3 class="font-bold text-[16px] text-[var(--ink)] group-hover:text-[#556B2F]">llms.txt Guide</h3>
         <p class="text-[13px] text-[#8A8574] mt-1">Agent instructions & data models.</p>
+      </a>
+
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="card p-5 hover:border-[#CCD99B] transition-all group">
+        <div class="w-10 h-10 rounded-xl bg-[#EBF0D2] flex items-center justify-center mb-3 text-[#556B2F]">
+          <i class="ph-bold ph-github-logo text-[20px]"></i>
+        </div>
+        <h3 class="font-bold text-[16px] text-[var(--ink)] group-hover:text-[#556B2F]">GitHub Source</h3>
+        <p class="text-[13px] text-[#8A8574] mt-1">Open source & MIT licensed.</p>
       </a>
     </div>
 

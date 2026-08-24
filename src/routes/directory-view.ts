@@ -375,6 +375,10 @@ if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigat
       <a href="/map" class="pill px-3.5 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] transition-colors">
         Map
       </a>
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" title="View Source on GitHub" class="pill px-3 py-1.5 text-[13px] font-semibold border border-[#E4E1D4] text-[#5B5A4E] hover:border-[#CCD99B] hover:text-[var(--ink)] transition-colors flex items-center gap-1.5">
+        <i class="ph-bold ph-github-logo text-[15px]"></i>
+        <span class="hidden sm:inline-block">GitHub</span>
+      </a>
     </div>
   </header>
 
@@ -523,6 +527,10 @@ if (typeof navigator !== 'undefined' && navigator.modelContext && typeof navigat
       <a href="/developers" class="hover:text-[var(--ink)] transition-colors font-medium">Developers</a>
       <span>·</span>
       <a href="/analytics" class="hover:text-[var(--ink)] transition-colors font-medium">Analytics</a>
+      <span>·</span>
+      <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
+        <i class="ph-bold ph-github-logo text-[13px]"></i> GitHub
+      </a>
       <span>·</span>
       <a href="/api/feed.json" target="_blank" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-medium">
         <i class="ph-bold ph-rss text-[13px]"></i> Feed
