@@ -104,6 +104,83 @@ export class DbRepository {
     return result || null;
   }
 
+  /**
+   * Increment per-board view counters.
+   * Called from BOTH the SSR /boards/:domain route and the client SPA openBoardProfile() flow.
+   * `userId` is the analytics uid (cookie ob_uid); if null we only bump total_views.
+   */
+  async recordBoardView(slug: string, userId: string | null): Promise<{ total_views: number; unique_viewers: number }> {
+    const cleanSlug = slug.toLowerCase().trim();
+    try {
+      // 1. Always bump total_views on the aggregate row
+      await this.db.prepare(`
+        INSERT INTO board_view_counts (slug, total_views, unique_viewers, last_viewed_at)
+        VALUES (?, 1, 0, datetime('now'))
+        ON CONFLICT(slug) DO UPDATE SET
+          total_views = total_views + 1,
+          last_viewed_at = datetime('now')
+      `).bind(cleanSlug).run();
+
+      // 2. If we have a userId, mark them as a viewer (PK protects against double-counting)
+      if (userId) {
+        const inserted = await this.db.prepare(`
+          INSERT INTO board_view_viewers (slug, user_id)
+          VALUES (?, ?)
+          ON CONFLICT(slug, user_id) DO NOTHING
+        `).bind(cleanSlug, userId).run();
+
+        const meta: any = inserted?.meta || {};
+        const changes = typeof meta.changes === 'number' ? meta.changes : 0;
+        if (changes > 0) {
+          await this.db.prepare(`
+            UPDATE board_view_counts
+            SET unique_viewers = unique_viewers + 1
+            WHERE slug = ?
+          `).bind(cleanSlug).run();
+        }
+      }
+
+      const row = await this.db.prepare(`
+        SELECT total_views, unique_viewers FROM board_view_counts WHERE slug = ?
+      `).bind(cleanSlug).first<{ total_views: number; unique_viewers: number }>();
+
+      return {
+        total_views: row?.total_views ?? 1,
+        unique_viewers: row?.unique_viewers ?? 0,
+      };
+    } catch (err) {
+      console.warn('[recordBoardView]', err);
+      return { total_views: 0, unique_viewers: 0 };
+    }
+  }
+
+  /**
+   * Bulk-fetch view counts for a list of slugs (used by the directory view).
+   * Returns Map<slug, { total_views, unique_viewers }>; missing rows are absent.
+   */
+  async getBoardViews(slugs: string[]): Promise<Map<string, { total_views: number; unique_viewers: number }>> {
+    const map = new Map<string, { total_views: number; unique_viewers: number }>();
+    if (!slugs.length) return map;
+
+    const cleanSlugs = [...new Set(slugs.map((s) => s.toLowerCase().trim()))].filter(Boolean);
+    if (!cleanSlugs.length) return map;
+
+    try {
+      const placeholders = cleanSlugs.map(() => '?').join(',');
+      const { results } = await this.db
+        .prepare(`SELECT slug, total_views, unique_viewers FROM board_view_counts WHERE slug IN (${placeholders})`)
+        .bind(...cleanSlugs)
+        .all<{ slug: string; total_views: number; unique_viewers: number }>();
+
+      for (const r of results || []) {
+        map.set(r.slug, { total_views: r.total_views, unique_viewers: r.unique_viewers });
+      }
+    } catch (err) {
+      console.warn('[getBoardViews]', err);
+    }
+    return map;
+  }
+
   async getSiteByDomain(domain: string): Promise<Site | null> {
     const cleanDomain = domain.toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].trim();
     const result = await this.db

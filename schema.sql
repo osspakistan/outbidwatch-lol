@@ -1,4 +1,4 @@
--- OutbidWatch D1 Database Schema v1.2.0
+-- OutbidWatch D1 Database Schema v1.3.0
 -- Master schema with raw website title & meta description support
 
 CREATE TABLE IF NOT EXISTS sites (
@@ -123,3 +123,23 @@ CREATE INDEX IF NOT EXISTS idx_analytics_events_sid ON analytics_events(session_
 CREATE INDEX IF NOT EXISTS idx_analytics_events_uid ON analytics_events(user_id);
 CREATE INDEX IF NOT EXISTS idx_analytics_events_time ON analytics_events(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_analytics_events_path ON analytics_events(path);
+
+-- Per-board view counters (incremented on every board open, both SSR and client SPA)
+CREATE TABLE IF NOT EXISTS board_view_counts (
+  slug TEXT PRIMARY KEY,
+  total_views INTEGER NOT NULL DEFAULT 0,
+  unique_viewers INTEGER NOT NULL DEFAULT 0,
+  last_viewed_at TEXT DEFAULT (datetime('now'))
+);
+
+CREATE INDEX IF NOT EXISTS idx_board_view_counts_total ON board_view_counts(total_views DESC);
+
+-- Per-user "viewed this board" set, so we can increment unique_viewers per uid
+CREATE TABLE IF NOT EXISTS board_view_viewers (
+  slug TEXT NOT NULL,
+  user_id TEXT NOT NULL,
+  first_viewed_at TEXT DEFAULT (datetime('now')),
+  PRIMARY KEY (slug, user_id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_board_view_viewers_slug ON board_view_viewers(slug);

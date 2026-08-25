@@ -154,6 +154,9 @@ app.route('/api/og.png', ogImageRouter);
 app.route('/og.svg', ogImageRouter);
 app.route('/og.png', ogImageRouter);
 
+// Board view counter endpoints (bulk fetch for directory + increment from SPA)
+app.route('/api/boards', boardViewRouter);
+
 // Mount v1 API Aliases for Versioning Policy
 app.route('/v1/analytics', analyticsApiRouter);
 app.route('/v1/map', mapApiRouter);

@@ -6,6 +6,36 @@ import { renderHeader, renderMobileNavDrawer, renderFooter } from '../lib/nav';
 
 export const boardViewRouter = new Hono<{ Bindings: Env; Variables: AppVariables }>();
 
+// GET /api/boards/views?slugs=a,b,c - Bulk view counts for directory cards
+boardViewRouter.get('/views', async (c) => {
+  const raw = c.req.query('slugs') || '';
+  const slugs = raw.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean).slice(0, 250);
+  if (!slugs.length) {
+    return c.json({ success: true, data: {}, timestamp: new Date().toISOString() });
+  }
+  const db = getDb(c.env.DB);
+  const map = await db.getBoardViews(slugs);
+  const obj: Record<string, { total_views: number; unique_viewers: number }> = {};
+  for (const [k, v] of map.entries()) obj[k] = v;
+  c.header('Cache-Control', 'public, max-age=10, s-maxage=30, stale-while-revalidate=60');
+  return c.json({ success: true, data: obj, timestamp: new Date().toISOString() });
+});
+
+// POST /api/boards/:domain/view - Fire-and-forget view increment from client SPA
+boardViewRouter.post('/:domain/view', async (c) => {
+  let domainParam = c.req.param('domain').toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].trim();
+  if (domainParam.endsWith('.md')) domainParam = domainParam.slice(0, -3);
+  const db = getDb(c.env.DB);
+  const site = await db.getSiteByDomain(domainParam) || await db.getSiteBySlug(domainParam);
+  if (!site) {
+    return c.json({ success: false, error: 'Board not found' }, 404);
+  }
+  const analytics = c.get('analytics');
+  const counts = await db.recordBoardView(site.slug, analytics?.userId || null);
+  return c.json({ success: true, data: { slug: site.slug, ...counts }, timestamp: new Date().toISOString() });
+});
+
+
 function escapeHtml(str: string | null | undefined): string {
   if (!str) return '';
   return String(str)
@@ -54,6 +84,14 @@ function formatProfessionalNote(note?: string | null, provenance?: string | null
   }
 
   return 'Verified by OutbidWatch maintainer team.';
+}
+
+// Compact view count: 1234 -> "1.2k", 1_500_000 -> "1.5M"
+function formatViewCount(n: number): string {
+  if (!Number.isFinite(n) || n <= 0) return '0';
+  if (n < 1000) return String(n);
+  if (n < 1_000_000) return (n / 1000).toFixed(n < 10_000 ? 1 : 0).replace(/\.0$/, '') + 'k';
+  return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
 }
 
 // GET /boards/:domain - SEO Server-Rendered Single Site Profile Page with View Transitions
@@ -178,6 +216,11 @@ Public AI-agent Markdown profile for [${formatDomainTitle(enriched.domain, enric
   });
   const ogImage = `${baseUrl}/api/og?${ogMetaParams.toString()}`;
 
+  // Per-board view counts (read snapshot for display; the increment itself happens
+  // after rendering, via waitUntil, so we show 0 on the first ever visit).
+  const viewMap = await db.getBoardViews([enriched.slug]);
+  const viewCounts = viewMap.get(enriched.slug) || { total_views: 0, unique_viewers: 0 };
+
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,6 +263,10 @@ Public AI-agent Markdown profile for [${formatDomainTitle(enriched.domain, enric
     <span>${escapeHtml(enriched.category)}</span>
     <span>/</span>
     <span class="font-bold text-[var(--ink)]">${escapeHtml(enriched.domain)}</span>
+    <span class="ml-auto pill px-2 py-1 text-[11px] font-bold tracking-wide inline-flex items-center gap-1 bg-[#F1EFE6] text-[#5B5A4E] border border-[#E4E1D4]" title="${viewCounts.total_views.toLocaleString()} total views \u00b7 ${viewCounts.unique_viewers.toLocaleString()} unique">
+      <i class="ph-bold ph-eye text-[11px]"></i>
+      ${escapeHtml(formatViewCount(viewCounts.total_views))} views
+    </span>
   </nav>
 
   <!-- Main Board Profile Card with View Transitions -->
@@ -281,29 +328,48 @@ Public AI-agent Markdown profile for [${formatDomainTitle(enriched.domain, enric
         </div>
       </div>
 
-      <!-- Metadata Attributes Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-        <div class="rounded-xl p-3 bg-[#F5F4EC] border border-[#EAE7DC]">
-          <span class="text-[11px] font-bold text-[#8A8574] uppercase block mb-0.5">Founder</span>
-          <a href="https://x.com/${encodeURIComponent(enriched.founder_x_handle)}" target="_blank" rel="noopener noreferrer" class="font-bold text-[13.5px] text-[var(--ink)] hover:underline flex items-center gap-1">
-            <i class="ph-bold ph-x-logo text-[12px]"></i> @${escapeHtml(enriched.founder_x_handle)}
-          </a>
+      <!-- Metadata Attributes Bento Grid -->
+      <!-- Row 1: 2 big tiles (Views | Founder)  |  Row 2: 3 small tiles (Origin | Registration | Currency) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+        <!-- Big: Views (spans 2 cols on mobile, 1 on sm) -->
+        <div class="col-span-2 sm:col-span-1 rounded-xl p-4 bg-[#F5F4EC] border border-[#EAE7DC] flex flex-col gap-1.5">
+          <span class="text-[11px] font-bold text-[#8A8574] uppercase tracking-wider flex items-center gap-1.5">
+            <i class="ph-bold ph-eye text-[13px] text-[var(--mosambi-dark)]"></i>
+            Views
+          </span>
+          <div class="flex items-baseline gap-1.5 flex-wrap">
+            <span class="font-extrabold text-[20px] sm:text-[22px] text-[var(--ink)] leading-none">${escapeHtml(formatViewCount(viewCounts.total_views))}</span>
+            <span class="text-[12px] font-medium text-[#8A8574]">total</span>
+          </div>
+          <span class="text-[11.5px] text-[#8A8574] font-medium">${escapeHtml(formatViewCount(viewCounts.unique_viewers))} unique visitors</span>
         </div>
 
+        <!-- Big: Founder -->
+        <div class="col-span-2 sm:col-span-1 rounded-xl p-4 bg-[#F5F4EC] border border-[#EAE7DC] flex flex-col gap-1.5">
+          <span class="text-[11px] font-bold text-[#8A8574] uppercase tracking-wider">Founder</span>
+          <a href="https://x.com/${encodeURIComponent(enriched.founder_x_handle)}" target="_blank" rel="noopener noreferrer" class="font-extrabold text-[16px] sm:text-[17px] text-[var(--ink)] hover:underline flex items-center gap-1.5 leading-tight break-all">
+            <i class="ph-bold ph-x-logo text-[14px] shrink-0"></i> <span>@${escapeHtml(enriched.founder_x_handle)}</span>
+          </a>
+          <span class="text-[11.5px] text-[#8A8574] font-medium">Verified X handle</span>
+        </div>
+
+        <!-- Small: Origin / Base -->
         <div class="rounded-xl p-3 bg-[#F5F4EC] border border-[#EAE7DC]">
-          <span class="text-[11px] font-bold text-[#8A8574] uppercase block mb-0.5">Origin / Base</span>
+          <span class="text-[11px] font-bold text-[#8A8574] uppercase block mb-0.5">Origin</span>
           <span class="font-bold text-[13.5px] text-[var(--ink)] block truncate">
             ${flag} ${escapeHtml(enriched.country_name || 'Global')}
           </span>
         </div>
 
+        <!-- Small: Registration -->
         <div class="rounded-xl p-3 bg-[#F5F4EC] border border-[#EAE7DC]">
-          <span class="text-[11px] font-bold text-[#8A8574] uppercase block mb-0.5">Registration</span>
+          <span class="text-[11px] font-bold text-[#8A8574] uppercase block mb-0.5">Registered</span>
           <span class="font-bold text-[13.5px] text-[var(--ink)] block">
             ${regDateFormatted}
           </span>
         </div>
 
+        <!-- Small: Currency -->
         <div class="rounded-xl p-3 bg-[#F5F4EC] border border-[#EAE7DC]">
           <span class="text-[11px] font-bold text-[#8A8574] uppercase block mb-0.5">Currency</span>
           <span class="pill inline-block px-2 py-0.5 bg-[#E2DFC8] text-[#33372B] font-extrabold text-[12px] mt-0.5">
@@ -411,5 +477,19 @@ ${renderMobileNavDrawer({ isBoardProfile: true })}
 </html>`;
 
   c.header('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
+
+  // Increment per-board view counter for human HTML requests (skip bot/crawler UA).
+  // Fire-and-forget via waitUntil so it never adds TTFB.
+  const ua = c.req.header('user-agent') || '';
+  const looksLikeBot = /(bot|crawler|spider|slurp|bingpreview|facebookexternalhit|discordbot|twitterbot|linkedinbot|embedly|preview|monitor|headless)/i.test(ua);
+  if (!looksLikeBot) {
+    const db2 = getDb(c.env.DB);
+    const analytics = c.get('analytics');
+    const promise = db2.recordBoardView(enriched.slug, analytics?.userId || null).catch((e) => console.warn('[board view count]', e));
+    if (c.executionCtx && typeof c.executionCtx.waitUntil === 'function') {
+      c.executionCtx.waitUntil(promise);
+    }
+  }
+
   return c.html(html);
 });

@@ -48,6 +48,14 @@ function formatDomainTitle(domain: string, siteName?: string): string {
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+// Compact count formatter: 1234 -> "1.2k", 1_500_000 -> "1.5M"
+function formatViewCount(n: number): string {
+  if (!Number.isFinite(n) || n <= 0) return '';
+  if (n < 1000) return String(n);
+  if (n < 1_000_000) return (n / 1000).toFixed(n < 10_000 ? 1 : 0).replace(/\.0$/, '') + 'k';
+  return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+}
+
 // GET / and /index.md - Full Server-Side Rendered Directory with Edge D1 Database Query
 const handleDirectory = async (c: any) => {
   const db = getDb(c.env.DB);
@@ -72,6 +80,9 @@ const handleDirectory = async (c: any) => {
     db.listSites(filters),
   ]);
 
+  // Fetch per-board view counts in one bulk query (graceful no-op if table empty)
+  const viewMap = await db.getBoardViews(sites.map((s) => s.slug));
+
   const enrichedSites = sites.map(enrichSiteLogo);
 
   let cardsHtml = '';
@@ -85,6 +96,12 @@ const handleDirectory = async (c: any) => {
     const locationLabel = site.founder_location || site.country_name || 'Global';
     const cardTitle = formatDomainTitle(site.domain, site.site_name);
     const boardProfileUrl = `/boards/${encodeURIComponent(site.domain)}`;
+
+    const views = viewMap.get(site.slug);
+    const totalViews = views?.total_views || 0;
+    const viewsBadgeHtml = totalViews > 0
+      ? `<span class="pill px-2 py-1 text-[11px] font-bold tracking-wide inline-flex items-center gap-1 bg-[#F1EFE6] text-[#5B5A4E] border border-[#E4E1D4]" title="${totalViews.toLocaleString()} total views"><i class="ph-bold ph-eye text-[11px]"></i>${escapeHtml(formatViewCount(totalViews))}</span>`
+      : '';
 
     cardsHtml += `
       <article 
@@ -117,8 +134,9 @@ const handleDirectory = async (c: any) => {
           </div>
 
           <!-- Registration Date to the Left of Status Badge -->
-          <div class="flex items-center gap-2.5 shrink-0">
+          <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             <span class="text-[12px] text-[#8A8574] font-medium hidden sm:inline-block">reg. ${regDateFormatted}</span>
+            ${viewsBadgeHtml}
             <span class="pill ${statusClass} px-2.5 py-1 text-[11px] font-bold tracking-wide">
               ${statusLabel}
             </span>

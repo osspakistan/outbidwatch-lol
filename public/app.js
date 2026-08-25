@@ -658,6 +658,16 @@
     window.history.pushState({ page: 'board', domain }, '', `/boards/${encodeURIComponent(domain)}`);
     document.title = `${metaTitle} | OutbidWatch`;
 
+    // Fire-and-forget view counter (beacon survives nav/unmount)
+    try {
+      const url = `/api/boards/${encodeURIComponent(domain)}/view`;
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(url, '');
+      } else {
+        fetch(url, { method: 'POST', keepalive: true }).catch(() => {});
+      }
+    } catch (e) {}
+
     if ('startViewTransition' in document) {
       document.startViewTransition(performTransition);
     } else {
