@@ -3,6 +3,7 @@ import type { Env, AppVariables } from '../types/env';
 import { getDb } from '../db/index';
 import { enrichSiteLogo } from '../lib/utils';
 import { renderHeader, renderMobileNavDrawer, renderFooter } from '../lib/nav';
+import { rateLimiter } from '../middleware/rate-limit';
 
 export const boardViewRouter = new Hono<{ Bindings: Env; Variables: AppVariables }>();
 
@@ -21,8 +22,8 @@ boardViewRouter.get('/views', async (c) => {
   return c.json({ success: true, data: obj, timestamp: new Date().toISOString() });
 });
 
-// POST /api/boards/:domain/view - Fire-and-forget view increment from client SPA
-boardViewRouter.post('/:domain/view', async (c) => {
+// POST /api/boards/:domain/view - Fire-and-forget view increment from client SPA (rate-limited)
+boardViewRouter.post('/:domain/view', rateLimiter({ maxRequests: 60, windowSeconds: 60 }), async (c) => {
   let domainParam = c.req.param('domain').toLowerCase().replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].trim();
   if (domainParam.endsWith('.md')) domainParam = domainParam.slice(0, -3);
   const db = getDb(c.env.DB);
@@ -216,10 +217,20 @@ Public AI-agent Markdown profile for [${formatDomainTitle(enriched.domain, enric
   });
   const ogImage = `${baseUrl}/api/og?${ogMetaParams.toString()}`;
 
-  // Per-board view counts (read snapshot for display; the increment itself happens
-  // after rendering, via waitUntil, so we show 0 on the first ever visit).
+  // Per-board view counts: increment if human, then read
+  const ua = c.req.header('user-agent') || '';
+  const looksLikeBot = /(bot|crawler|spider|slurp|bingpreview|facebookexternalhit|discordbot|twitterbot|linkedinbot|embedly|preview|monitor|headless)/i.test(ua);
+  let viewCounts = { total_views: 0, unique_viewers: 0 };
+  if (!looksLikeBot) {
+    const analytics = c.get('analytics');
+    try {
+      await db.recordBoardView(enriched.slug, analytics?.userId || null);
+    } catch (e) {
+      console.warn('[board view count]', e);
+    }
+  }
   const viewMap = await db.getBoardViews([enriched.slug]);
-  const viewCounts = viewMap.get(enriched.slug) || { total_views: 0, unique_viewers: 0 };
+  viewCounts = viewMap.get(enriched.slug) || { total_views: 0, unique_viewers: 0 };
 
   const html = `<!DOCTYPE html>
 <html lang="en">
@@ -332,7 +343,7 @@ Public AI-agent Markdown profile for [${formatDomainTitle(enriched.domain, enric
       <!-- Row 1: 2 big tiles (Views | Founder)  |  Row 2: 3 small tiles (Origin | Registration | Currency) -->
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
         <!-- Big: Views (spans 2 cols on mobile, 1 on sm) -->
-        <div class="col-span-2 sm:col-span-1 rounded-xl p-4 bg-[#F5F4EC] border border-[#EAE7DC] flex flex-col gap-1.5">
+        <div class="col-span-2 sm:col-span-1 rounded-xl p-4 bg-[#F5F4EC] border border-[#EAE7DC] flex flex-col gap-1.5" title="Total views since launch. Unique visitors counted via browser cookie (clearing cookies resets your unique count).">
           <span class="text-[11px] font-bold text-[#8A8574] uppercase tracking-wider flex items-center gap-1.5">
             <i class="ph-bold ph-eye text-[13px] text-[var(--mosambi-dark)]"></i>
             Views
@@ -478,18 +489,7 @@ ${renderMobileNavDrawer({ isBoardProfile: true })}
 
   c.header('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
 
-  // Increment per-board view counter for human HTML requests (skip bot/crawler UA).
-  // Fire-and-forget via waitUntil so it never adds TTFB.
-  const ua = c.req.header('user-agent') || '';
-  const looksLikeBot = /(bot|crawler|spider|slurp|bingpreview|facebookexternalhit|discordbot|twitterbot|linkedinbot|embedly|preview|monitor|headless)/i.test(ua);
-  if (!looksLikeBot) {
-    const db2 = getDb(c.env.DB);
-    const analytics = c.get('analytics');
-    const promise = db2.recordBoardView(enriched.slug, analytics?.userId || null).catch((e) => console.warn('[board view count]', e));
-    if (c.executionCtx && typeof c.executionCtx.waitUntil === 'function') {
-      c.executionCtx.waitUntil(promise);
-    }
-  }
+
 
   return c.html(html);
 });
