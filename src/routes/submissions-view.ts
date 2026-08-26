@@ -100,7 +100,7 @@ ${s.rejection_reason ? `- **Rejection reason**: ${s.rejection_reason}\n` : ''}
           <p class="text-[12px] text-[#991B1B] bg-[#FEE2E2]/60 border border-[#FECACA] rounded-xl px-3 py-2 leading-relaxed"><strong>Rejected:</strong> ${escapeHtml(s.rejection_reason)}</p>
         ` : ''}
         ${s.status === 'pending' ? `
-          <p class="text-[12px] text-[#92400E] bg-[#FEF3C7]/60 border border-[#FDE68A] rounded-xl px-3 py-2 leading-relaxed">Awaiting maintainer verification — WHOIS lookup and bidding-mechanics check in progress.</p>
+          <p class="text-[12px] text-[#92400E] bg-[#FEF3C7]/60 border border-[#FDE68A] rounded-xl px-3 py-2 leading-relaxed">Queued for manual review by the maintainer. No listing yet — approval is not guaranteed.</p>
         ` : ''}
       </article>
     `).join('')
@@ -153,7 +153,7 @@ ${s.rejection_reason ? `- **Rejection reason**: ${s.rejection_reason}\n` : ''}
         Submission queue.
       </h1>
       <p class="text-[14.5px] text-[#5B5A4E] leading-relaxed max-w-xl">
-        Every platform submitted by the community lands here before it earns a spot in the directory. I verify WHOIS records and real bidding mechanics before approving.
+        Every platform submitted by the community lands here before it earns a spot in the directory. Each one is reviewed manually — I check the live site and its WHOIS record by hand before approving.
       </p>
       <a href="/" class="btn-primary pill px-5 py-2.5 text-[13px] font-bold inline-flex items-center gap-2 shadow-sm mt-4">
         <i class="ph-bold ph-plus"></i> Submit a site
