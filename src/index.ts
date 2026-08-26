@@ -22,6 +22,7 @@ import { storyViewRouter } from './routes/story-view';
 import { ogImageRouter } from './routes/og-image';
 import { mapViewRouter, handleMapView } from './routes/map-view';
 import { mapApiRouter } from './routes/map-api';
+import { submissionsViewRouter } from './routes/submissions-view';
 
 import { analyticsMiddleware } from './middleware/analytics';
 import { analyticsViewRouter } from './routes/analytics-view';
@@ -134,6 +135,8 @@ app.route('/journey', storyViewRouter);
 app.route('/timeline', timelineViewRouter);
 app.route('/boards', boardViewRouter);
 app.route('/analytics', analyticsViewRouter);
+app.route('/submissions', submissionsViewRouter);
+app.get('/queue', (c) => c.redirect('/submissions', 301));
 app.route('/', directoryViewRouter);
 
 // Mount API Routes

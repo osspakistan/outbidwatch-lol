@@ -483,6 +483,25 @@ export class DbRepository {
     return updated;
   }
 
+  /**
+   * Public-safe recent submissions across all statuses, newest first.
+   * Excludes submitter_note (may contain private context).
+   */
+  async listRecentSubmissions(limit = 50): Promise<Submission[]> {
+    const capped = Math.min(Math.max(Number(limit) || 50, 1), 100);
+    const { results } = await this.db
+      .prepare(`
+        SELECT id, domain, url, founder_x_handle, founder_location,
+               launch_date, currency, status, rejection_reason, created_at
+        FROM submissions
+        ORDER BY created_at DESC
+        LIMIT ?
+      `)
+      .bind(capped)
+      .all<Submission>();
+    return results || [];
+  }
+
   async getTimelineCache(key: string): Promise<{ id: string; query: string; tweets_json: string; cached_at: string } | null> {
     try {
       await this.db.prepare(`

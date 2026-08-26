@@ -165,6 +165,8 @@ export function renderFooter(options: NavOptions = {}): string {
       <span class="text-[#D0CDBF]">·</span>
       <a href="/analytics" class="hover:text-[var(--ink)] transition-colors">Analytics</a>
       <span class="text-[#D0CDBF]">·</span>
+      <a href="/submissions" class="hover:text-[var(--ink)] transition-colors">Queue</a>
+      <span class="text-[#D0CDBF]">·</span>
       <a href="https://github.com/osspakistan/outbidwatch-lol" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)] transition-colors flex items-center gap-1">
         <i class="ph-bold ph-github-logo text-[12px]"></i> GitHub
       </a>
